@@ -1,0 +1,21 @@
+<script>
+	var faye = new Faye.Client('http://localhost:9292/faye');
+	var user = new Bluebase.Models.User;
+	user.set(<%= @user.to_json.html_safe %>);
+	var shippers = new Bluebase.Collections.Shippers;
+	shippers.reset(<%= @shippers.to_json.html_safe %>);
+	var warehouses = new Bluebase.Collections.Warehouses;
+	warehouses.reset(<%= @warehouses.to_json.html_safe %>);
+	var items_collection = new Bluebase.Collections.Items;
+</script>
+
+<div class="page-header">
+	<h1>Inventory View</h1>
+</div>
+<div class="row">
+	<div id="left" class="span5"></div>
+
+	<div id="center" class="span12"></div>
+
+	<div id="right" class="span5"></div>
+</div>

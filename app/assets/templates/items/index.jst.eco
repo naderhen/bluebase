@@ -1,0 +1,44 @@
+<div class="well">
+	<h4>Inventory for <%= @purchaseorder.get('po_number') %></h4>
+</div>
+<div class="row">
+	<div class="well span3">
+		<form id="items-filters" class="form-horizontal">
+			<label>PO #</label>
+			<input class="filter-widget span2" type="text" data-column="1">
+			<label>Box #</label>
+			<input class="filter-widget span2" type="text" data-column="2">
+			<label>Item #</label>
+			<input class="filter-widget span2" type="text" data-column="3">
+			<label>Weight</label>
+			<input class="filter-widget span2" type="text" data-column="4">
+			<label>Species</label>
+			<input class="filter-widget span2" type="text" data-column="5">
+			<label>Grade</label>
+			<input class="filter-widget span2" type="text" data-column="6">
+		</form>
+	</div>
+	<div class="span8">
+		<table id="inventory-table" class="table table-striped table-bordered table-condensed">
+			<thead>
+				<tr>
+					<th><i class="icon-check"></i></th>
+					<th>PO #</th>
+					<th>Box</th>
+					<th>Item</th>
+					<th>Weight</th>
+					<th>Species</th>
+					<th>Grade</th>
+					<th>Freshness</th>
+					<th>Texture</th>
+					<th>Tail</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<a class="btn batch-edit" href="#"><i class="icon-pencil"></i> Batch Edit (<span><%= @batch_collection.length %></span>)</a>
+		<a class="btn btn-danger clear-batch" href="#"><i class="icon-trash icon-white"></i> Clear Selection</a>
+	</div>
+</div>

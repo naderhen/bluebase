@@ -11,7 +11,102 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331014022) do
+ActiveRecord::Schema.define(:version => 20120331203307) do
+
+  create_table "airports", :force => true do |t|
+    t.string   "short_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attachments", :force => true do |t|
+    t.string   "type"
+    t.integer  "purchaseorder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+  end
+
+  create_table "item_codes", :force => true do |t|
+    t.string   "code"
+    t.string   "species"
+    t.string   "subspecies"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", :force => true do |t|
+    t.integer  "purchaseorder_id"
+    t.integer  "box_number"
+    t.integer  "item_number"
+    t.float    "weight"
+    t.string   "code"
+    t.float    "cost"
+    t.string   "grade_notes"
+    t.string   "description"
+    t.string   "species"
+    t.string   "subspecies"
+    t.string   "shipper_grade"
+    t.string   "core_grade"
+    t.string   "freshness_grade"
+    t.string   "texture_grade"
+    t.string   "tail_grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "subject_class"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchaseorders", :force => true do |t|
+    t.integer  "po_number"
+    t.date     "po_date"
+    t.integer  "shipper_id"
+    t.boolean  "active"
+    t.string   "locale"
+    t.string   "origin"
+    t.string   "airline"
+    t.string   "customs_broker"
+    t.date     "date_of_arrival"
+    t.integer  "warehouse_id"
+    t.integer  "airport_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shippers", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,9 +126,27 @@ ActiveRecord::Schema.define(:version => 20120331014022) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+  create_table "warehouses", :force => true do |t|
+    t.string   "short_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

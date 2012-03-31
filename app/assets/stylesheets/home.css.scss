@@ -1,3 +1,27 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#container { padding-top: 40px; }
+
+#main { margin: 25px 0 0 0; }
+
+.icon-list, icon-ok {
+	cursor: pointer;
+	}
+
+#batch-modal { width: 750px; }
+
+.highlight,
+.table-striped tbody tr:nth-child(odd).highlight td,
+.table-striped tbody tr:nth-child(odd).highlight th {
+	color: #FFF;
+	background-color: #08C !important;
+}
+
+.changed,
+.table-striped tbody tr:nth-child(odd).changed td,
+.table-striped tbody tr:nth-child(odd).changed th {
+	color: #000;
+	background-color: #C09853 !important;
+}

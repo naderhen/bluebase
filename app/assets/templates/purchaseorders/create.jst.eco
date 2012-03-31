@@ -1,0 +1,37 @@
+<div class="modal">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">x</a>
+		<h3>Create a PO</h3>
+	</div>
+	<div class="modal-body">
+		<div class="span3">
+			<label>PO #</label>
+			<input id="po_number" type="text" value="">
+			<label>Amicus Code</label>
+			<input id="amicus_code" type="text" value="">
+		    <label>Date</label>
+		    <input id="po_date" type="text" value="" class="datepicker">
+		    <label>Shipper</label>
+		    <select id="shipper_id">
+				<% for shipper in @shippers_collection.models: %>
+		    		<option value="<%= shipper.get('id') %>"><%= shipper.get('name') %></option>
+		    	<% end %>
+		    </select>
+		    <label>Origin</label>
+		    <input id="origin" type="text" value="">
+		</div>
+		<div class="span3">
+			<label>Warehouse</label>
+			<select id="warehouse_id">
+				<% for warehouse in warehouses.models: %>
+					<option value="<%= warehouse.get('id') %>"><%= warehouse.get('short_name') %></option>
+				<% end %>
+			</select>
+		</div>
+		<div id="upload-container" class="span6"></div>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="save btn btn-primary">Save changes</a>
+	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>

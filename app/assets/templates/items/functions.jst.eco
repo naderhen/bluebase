@@ -1,0 +1,111 @@
+<div class="well">
+	<h4>Functions: <%= @item.get('po_number') %>-<%= @item.get('box_number') %>-<%= @item.get('item_number') %></h4>
+</div>
+
+<div class="well">
+	<h3>Regrading</h3>
+</div>
+
+<div class="well">
+	<form id="regrading-form" class="form-vertical">
+		<div class="row">
+			<div class="span2">
+				<% if(@grade_options.length): %>
+					<label for="core_grade">Core</label>
+					<select id="core_grade" class="span2">
+						<% for grade in @grade_options: %>
+							<option><%= grade %></option>
+						<% end %>
+					</select>
+				<% end %>
+				<% if(@freshness_grade_options.length): %>
+					<label for="freshness_grade">Freshness</label>
+					<select id="freshness_grade" name="freshness_grade" class="span2">
+						<% for grade in @freshness_grade_options: %>
+							<option><%= grade %></option>
+						<% end %>
+					</select>
+				<% end %>
+			</div>
+			<div class="span2">
+				<% if(@tail_grade_options.length): %>
+					<label for="tail_grade">Tail</label>
+					<select id="tail_grade" class="span2">
+						<% for grade in @tail_grade_options: %>
+							<option><%= grade %></option>
+						<% end %>
+					</select>
+				<% end %>
+				<% if(@texture_grade_options.length): %>
+					<label for="texture_grade">Texture</label>
+					<select id="texture_grade" class="span2">
+						<% for grade in @texture_grade_options: %>
+							<option><%= grade %></option>
+						<% end %>
+					</select>
+				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span2">
+				<button type="submit" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<div class="well">
+	<h3>Product Info</h3>
+</div>
+
+<div class="well">
+	<form id="item-form" class="form-horizontal">
+		<div class="row">
+			<div class="span2">
+				<label>PO #</label>
+				<input id="po_number" type="text" class="input-small" placeholder="PO#">
+				<label>Item #</label>
+				<input id="item_number" type="text" class="input-small" placeholder="Item #">
+				<label>Species</label>
+				<input id="species" type="text" class="input-small" placeholder="Species">
+				<label>Subspecies</label>
+				<input id="subspecies" type="text" class="input-small" placeholder="Subspecies">
+				<label>Shipper Grade</label>
+				<input id="shipper_grade" type="text" class="input-small" placeholder="Shipper Grade">
+			</div>
+			<div class="span2">
+				<label>Box #</label>
+				<input id="box_number" type="text" class="input-small" placeholder="Box #">
+				<label>Weight</label>
+				<input id="weight" type="text" class="input-small" placeholder="Weight">
+				<label>Type</label>
+				<input id="type" type="text" class="input-small" placeholder="Type">
+				<label>Cut</label>
+				<input id="cut" type="text" class="input-small" placeholder="Cut">
+			</div>
+		</div>
+		<div class="row">
+			<div class="span2">
+				<button type="submit" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span4">
+				<h2>Purchase Order Info</h2>
+				<div class="span2">
+					<dl class="dl-horizontal">
+				        <dt>DOA:</dt>
+				        <dd>3/22/2012</dd>
+				        <dt>Origin:</dt>
+				        <dd>Brazil</dd>
+				        <dt>Code:</dt>
+				        <dd>MIA-4686-2403</dd>
+				        <dt>Shipper:</dt>
+				        <dd>******* *****</dd>
+			      	</dl>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

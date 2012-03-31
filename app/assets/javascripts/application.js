@@ -6,5 +6,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require jquery-ui-1.8.18.custom.min
+//= require underscore
+//= require backbone
+
+//= require bluebase
+
+//= require_tree ./lib
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
 //= require_tree .

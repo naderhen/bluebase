@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 gem 'rails', '3.1.3'
-gem 'sqlite3'
+gem 'mysql2'
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
@@ -17,3 +17,15 @@ gem "database_cleaner", ">= 0.7.1", :group => :test
 gem "launchy", ">= 2.0.5", :group => :test
 gem "devise", ">= 2.1.0.rc"
 gem "bootstrap-sass", ">= 2.0.1"
+gem "faker"
+gem "backbone-on-rails"
+gem "rabl"
+gem "pry"
+gem "awesome_print"
+gem "cancan"
+gem "switch_user"
+gem "faye"
+gem 'eventmachine', "1.0.0.beta.4"
+gem "paperclip", "~> 3.0"
+gem "paper_trail"
+gem "acts-as-taggable-on", "~> 2.2.2"

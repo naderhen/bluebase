@@ -1,0 +1,15 @@
+<td><i class="icon-check select unselected"></i></td>
+<td data-bind="text po_number"><%= @item.get('po_number') %></td>
+<td data-bind="text box_number"><%= @item.get('box_number') %></td>
+<td><%= @item.get('item_number') %></td>
+<td data-bind="text weight"><%= @item.get('weight') %></td>
+<td><%= @item.get('species') %></td>
+<td><%= @item.get('core_grade') %></td>
+<td><%= @item.get('freshness_grade') %></td>
+<td><%= @item.get('texture_grade') %></td>
+<td><%= @item.get('tail_grade') %></td>
+<td>
+	<i class="icon-search"></i>
+	<i class="icon-ok icon-darkblue" style="display: none;"></i>
+	<i class="icon-comment icon-darkblue" style="display: none;"></i>
+</td>

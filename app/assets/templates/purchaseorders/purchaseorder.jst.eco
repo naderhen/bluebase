@@ -1,0 +1,9 @@
+<td>
+	<i class="icon-list"></i>
+	<i class="icon-edit edit-purchaseorder"></i>
+</td>
+<td class="edit_purchaseorder"><%= @purchaseorder.get('po_number') %></td>
+<td><%= @purchaseorder.get('po_date') %></td>
+<td><%= @purchaseorder.get('shipper').name %></td>
+<td><%= @purchaseorder.get('locale') %></td>
+<td><%= @purchaseorder.get('origin') %></td>

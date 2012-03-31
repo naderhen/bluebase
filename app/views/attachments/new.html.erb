@@ -1,0 +1,4 @@
+<%= form_for Attachment.new, :html => {:multipart => true} do |f| %>
+	<%= f.file_field :main_file %>
+	<%= f.submit %>
+<% end %>

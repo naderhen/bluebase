@@ -1,0 +1,42 @@
+<div class="modal">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">x</a>
+		<h3>Edit PO# <%= @model.get('po_number') %></h3>
+	</div>
+	<div class="modal-body">
+		<div class="span3">
+			<label>PO #</label>
+			<input id="po_number" type="text" value="<%= @model.get('po_number') %>">
+			<label>Shipper</label>
+			<select id="shipper_id">
+				<% for shipper in @shippers_collection.models: %>
+		    		<option value="<%= shipper.get('id') %>"><%= shipper.get('name') %></option>
+		    	<% end %>
+		    </select>
+		    <label>Date</label>
+		    <input id="po_date" type="text" value="<%= @model.get('po_date') %>">
+		    <label>Locale</label>
+		    <select id="locale">
+		    	<option>MIT</option>
+		    	<option>TDW</option>
+		    </select>
+		    <label>Origin</label>
+		    <input id="origin" type="text" value="<%= @model.get('origin') %>">
+		</div>
+		<div class="span3">
+			<label>Airline</label>
+			<input id="airline" type="text">
+			<label>Airport</label>
+			<input id="airport" type="text">
+			<label>Broker</label>
+			<input id="broker" type="text">
+			<h4>Notes:</h4>
+			<dl class="dl-horizontal">
+	      	</dl>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-edit">Save changes</a>
+	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
