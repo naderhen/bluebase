@@ -22,69 +22,19 @@
 		</div>
 		<div class="span3">
 			<form class="form-horizontal">
-				<div class="control-group">
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList1" value="option1">
-	                FDA
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList2" value="option2">
-	                Rainbow
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Smell
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Soft
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Sashi
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Eggs
-	              </label>
-	              <p>More options...</p>
-	            </div>
-          	</form>
-		</div>
-		<div class="span3">
-			<form class="form-horizontal">
-				<div class="control-group">
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList1" value="option1">
-	                FDA
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList2" value="option2">
-	                Rainbow
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Smell
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Soft
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Sashi
-	              </label>
-	              <label class="checkbox">
-	                <input type="checkbox" name="optionsCheckboxList3" value="option3">
-	                Eggs
-	              </label>
-	              <p>More options...</p>
-	            </div>
+				<% for tag_option in @tag_options: %>
+					<div class="tag_check_item">
+						<label class="checkbox">
+	                		<input id="tag_check_<%= tag_option %>" type="checkbox" name="<%= tag_option %>" class="tag_list_check" value="<%= tag_option %>">
+	                		<%= tag_option %>
+	              		</label>
+					</div>
+				<% end %>
           	</form>
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary">Save changes</a>
-	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+		<a id="submit-batch" href="#" class="btn btn-primary">Save changes</a>
+	    <a id="close-modal" href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
 </div>

@@ -47,6 +47,18 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="span5">
+				<% for tag_option in @tag_options: %>
+					<div class="tag_check_item">
+						<label class="checkbox">
+	                		<input id="tag_check_<%= tag_option %>" type="checkbox" name="<%= tag_option %>" class="tag_list_check" value="<%= tag_option %>" <% if (@tagged.indexOf(tag_option) > -1): %>checked="checked"<%end%>>
+	                		<%= tag_option %>
+	              		</label>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="row">
 			<div class="span2">
 				<button type="submit" class="btn btn-primary">Save changes</button>
 			</div>

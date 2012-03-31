@@ -14,26 +14,36 @@ puts 'New user created: ' << user.name
 user = User.create! :name => 'Warehouse Grader', :email => 'warehouse@bigblue.com', :password => 'bigblue', :password_confirmation => 'bigblue', :role => "Warehouse Grader"
 puts 'New user created: ' << user.name
 
+user = User.create! :name => 'Big Blue Staff', :email => 'bigblue@bigblue.com', :password => 'bigblue', :password_confirmation => 'bigblue', :role => "Staff"
+puts 'New user created: ' << user.name
+
+Warehouse.delete_all
 ["MIT", "PAN", "NOR", "TDW", "BFT", "ACA", "CUS", "ARA", "FDA", "LAW", "NFFM", "PEN", "PRY", "SEA", "FTW"].each do |warehouse|
 	Warehouse.create! short_name: warehouse
 	puts warehouse + ' warehouse created!'
 end
 
+Airport.delete_all
 ["JFK", "EWR", "ATL", "IAD", "MIA", "LAX"].each do |airport|
 	Airport.create! short_name: airport
 	puts airport + ' airport created!'
 end
 
+ItemCode.delete_all
 CSV.foreach("#{Rails.root}/public/codes2.csv") do |row|
 	ItemCode.create! code: row[0].to_s.strip, species: row[1].to_s.strip, subspecies: row[2].to_s.strip
 	puts row[0]
 end
 
+Shipper.delete_all
 10.times do
 	shipper = Shipper.create! name: Faker::Name.name, email: Faker::Internet.email, phone: Faker::PhoneNumber.phone_number
 	puts 'New Shipper Created: ' << shipper.name
 end
 
+Purchaseorder.delete_all
+Item.delete_all
+Attachment.delete_all
 (2400..2450).each_with_index do |num, index|
 	shipper = Shipper.all.shuffle[0]
 	date = Date.today - (30 - index)

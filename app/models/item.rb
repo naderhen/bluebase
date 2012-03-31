@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
 	belongs_to :purchaseorder
 	has_paper_trail
+	acts_as_taggable
 
 	after_create :parse_code
 
@@ -13,9 +14,5 @@ class Item < ActiveRecord::Base
 
 	def po_number
     	self.purchaseorder.po_number
-  	end
-
-  	def siblings
-  		Item.where(purchaseorder_id: self.purchaseorder_id, box_number: self.box_number).to_json
   	end
 end
