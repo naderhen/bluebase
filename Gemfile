@@ -1,3 +1,5 @@
+LANG    = "en_US.UTF-8"
+LC_ALL  = "en_US.UTF-8"
 source 'http://rubygems.org'
 gem 'rails', '3.1.3'
 gem 'mysql2'
