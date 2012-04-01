@@ -58,6 +58,9 @@
 - pids
 - config
 
+:assets:
+  :enabled: true
+
 # Specify native dependencies of gems. Moonshine comes with some preconfigured
 # defaults, but this allows you to add to them. Please file an issue at
 # http://github.com/railsmachine/moonshine/issues if there are additional gem
