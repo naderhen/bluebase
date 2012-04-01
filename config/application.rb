@@ -6,6 +6,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
+require 'net/http'
 # require "rails/test_unit/railtie"
 
 if defined?(Bundler)
@@ -17,6 +18,12 @@ end
 
 module Bluebase
   class Application < Rails::Application
+  
+  # don't attempt to auto-require the moonshine manifests into the rails env
+  config.paths['app/manifests'] = 'app/manifests'
+  config.paths['app/manifests'].skip_eager_load!
+
+
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|

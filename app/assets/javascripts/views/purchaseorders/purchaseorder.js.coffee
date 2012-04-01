@@ -9,8 +9,10 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 
 	initialize: ->
 		@model.on('change', @render, this)
+		@model.on('sync', @fayeNotify, this)
 
 	render: ->
+		
 		if user.get('role') != "Admin"
 		  @model.get('shipper').name = "Unavailable"
 
@@ -56,3 +58,6 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 		edit_view = new Bluebase.Views.PurchaseorderEdit(model: @model)
 		edit_view.render()
 		event.preventDefault()
+
+	fayeNotify: (event) ->
+		faye.publish('/activities/new', {"model": @model, "user": user})

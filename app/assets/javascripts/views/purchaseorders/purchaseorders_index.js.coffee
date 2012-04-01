@@ -7,6 +7,8 @@ class Bluebase.Views.PurchaseordersIndex extends Backbone.View
 	
 	initialize: ->
 		@collection.on('reset', @render, this)
+		faye.subscribe '/activities/new', (data) ->
+			console.log data
 
 	render: ->
 		$(@el).html(@template())

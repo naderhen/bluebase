@@ -245,7 +245,7 @@ DEPENDENCIES
   database_cleaner (>= 0.7.1)
   devise (>= 2.1.0.rc)
   email_spec (>= 1.2.1)
-  eventmachine (= 1.0.0.beta.4)
+  eventmachine
   factory_girl_rails (>= 2.0.0.rc)
   faker
   faye

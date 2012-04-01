@@ -25,7 +25,7 @@ gem "awesome_print"
 gem "cancan"
 gem "switch_user"
 gem "faye"
-gem 'eventmachine', "1.0.0.beta.4"
+gem 'eventmachine'
 gem "paperclip", "~> 3.0"
 gem "paper_trail"
 gem "acts-as-taggable-on", "~> 2.2.2"

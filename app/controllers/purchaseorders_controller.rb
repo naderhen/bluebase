@@ -12,7 +12,10 @@ class PurchaseordersController < ApplicationController
 
 	def update
 		@purchaseorder = Purchaseorder.find(params[:id])
-		respond_with @purchaseorder.update_attributes!(params[:purchaseorder])
+		if @purchaseorder.update_attributes!(params[:purchaseorder])
+			respond_with @purchaseorder.update_attributes!(params[:purchaseorder])
+			@activity = Activity.create! user_id: current_user.id, target_type: 'Purchaseorder', target_id: @purchaseorder.id, target_action: 'update'	
+		end
 	end
 
 	def show
