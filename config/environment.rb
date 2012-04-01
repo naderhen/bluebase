@@ -3,4 +3,3 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Bluebase::Application.initialize!
-Encoding.default_internal = 'UTF-8'
