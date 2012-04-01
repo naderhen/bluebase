@@ -1,0 +1,27 @@
+---
+background-body.png: background-body.png
+bootstrap/glyphicons-halflings-blue.png: bootstrap/glyphicons-halflings-blue.png
+bootstrap/glyphicons-halflings-darkblue.png: bootstrap/glyphicons-halflings-darkblue.png
+bootstrap/glyphicons-halflings-white.png: bootstrap/glyphicons-halflings-white.png
+bootstrap/glyphicons-halflings.png: bootstrap/glyphicons-halflings.png
+sort_asc.png: sort_asc.png
+sort_asc_disabled.png: sort_asc_disabled.png
+sort_both.png: sort_both.png
+sort_desc.png: sort_desc.png
+sort_desc_disabled.png: sort_desc_disabled.png
+application.js: application.js
+application.css: application.css
+custom-theme/images/ui-bg_flat_0_aaaaaa_40x100.png: custom-theme/images/ui-bg_flat_0_aaaaaa_40x100.png
+custom-theme/images/ui-bg_glass_55_fbf9ee_1x400.png: custom-theme/images/ui-bg_glass_55_fbf9ee_1x400.png
+custom-theme/images/ui-bg_glass_65_ffffff_1x400.png: custom-theme/images/ui-bg_glass_65_ffffff_1x400.png
+custom-theme/images/ui-bg_glass_75_dadada_1x400.png: custom-theme/images/ui-bg_glass_75_dadada_1x400.png
+custom-theme/images/ui-bg_glass_75_e6e6e6_1x400.png: custom-theme/images/ui-bg_glass_75_e6e6e6_1x400.png
+custom-theme/images/ui-bg_glass_75_ffffff_1x400.png: custom-theme/images/ui-bg_glass_75_ffffff_1x400.png
+custom-theme/images/ui-bg_highlight-soft_75_cccccc_1x100.png: custom-theme/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+custom-theme/images/ui-bg_inset-soft_95_fef1ec_1x100.png: custom-theme/images/ui-bg_inset-soft_95_fef1ec_1x100.png
+custom-theme/images/ui-icons_222222_256x240.png: custom-theme/images/ui-icons_222222_256x240.png
+custom-theme/images/ui-icons_2e83ff_256x240.png: custom-theme/images/ui-icons_2e83ff_256x240.png
+custom-theme/images/ui-icons_454545_256x240.png: custom-theme/images/ui-icons_454545_256x240.png
+custom-theme/images/ui-icons_888888_256x240.png: custom-theme/images/ui-icons_888888_256x240.png
+custom-theme/images/ui-icons_cd0a0a_256x240.png: custom-theme/images/ui-icons_cd0a0a_256x240.png
+custom-theme/images/ui-icons_f6cf3b_256x240.png: custom-theme/images/ui-icons_f6cf3b_256x240.png
