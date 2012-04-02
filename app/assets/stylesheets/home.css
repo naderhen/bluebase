@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#container { padding-top: 40px; }
+#container { padding-top: 40px !important; }
 
 #main { margin: 25px 0 0 0; }
 
