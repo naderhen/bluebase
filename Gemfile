@@ -1,14 +1,13 @@
 LANG    = "en_US.UTF-8"
 LC_ALL  = "en_US.UTF-8"
 source 'http://rubygems.org'
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.1'
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'thin'
-gem "rack", "~> 1.4.1"
 group :assets do
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 gem "rspec-rails", ">= 2.9.0.rc2", :group => [:development, :test]
 gem "machinist", :group => :test
