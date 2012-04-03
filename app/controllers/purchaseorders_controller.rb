@@ -2,7 +2,7 @@ class PurchaseordersController < ApplicationController
 	respond_to :json
 
 	def index
-		if current_user.role = "Warehouse Grader"
+		if current_user.role == "Warehouse Grader"
 			@purchaseorders = Purchaseorder.where(warehouse_id: current_user.warehouse_id)
 		else
 			@purchaseorders = Purchaseorder.all
