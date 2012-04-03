@@ -12,6 +12,9 @@
   <%= f.label :role %>
   <%= f.select(:role, ["Guest", "Staff", "Admin", "Warehouse Grader"]) %>
 
+  <%= f.label :warehouse_id %>
+  <%= collection_select(:user, :warehouse_id, Warehouse.all, :id, :short_name) %>
+
   <%= f.label :password %>
   <%= f.password_field :password, :autocomplete => "off" %>
 
