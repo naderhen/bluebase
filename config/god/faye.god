@@ -7,7 +7,7 @@ God.watch do |w|
  w.gid      = 'rails'
  w.env      = { 'RAILS_ENV' => RAILS_ENV }
  w.dir      = RAILS_ROOT
- w.start    = "bundle exec rackup faye.ru"
+ w.start    = "bundle exec rackup faye.ru -E production"
 
  # restart if memory gets too high
  w.transition(:up, :restart) do |on|
