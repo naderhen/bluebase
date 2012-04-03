@@ -1,5 +1,6 @@
 <script>
-	var faye = new Faye.Client('http://localhost:9292/faye');
+	var url = ("<%= Rails.env %>" == "development" ? 'http://localhost:9292/faye' : 'http://66.228.41.179:9292/faye');
+	var faye = new Faye.Client(url);
 	var user = new Bluebase.Models.User;
 	user.set(<%= @user.to_json.html_safe %>);
 	var shippers = new Bluebase.Collections.Shippers;
