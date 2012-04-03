@@ -2106,7 +2106,7 @@ table .span24 {
   height: 14px;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../bootstrap/glyphicons-halflings.png");
+  background-image: url("/assets/bootstrap/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   *margin-right: .3em;
@@ -2116,14 +2116,14 @@ table .span24 {
   *margin-left: 0;
 }
 .icon-white {
-  background-image: url("../bootstrap/glyphicons-halflings-white.png");
+  background-image: url("/assets/bootstrap/glyphicons-halflings-white.png");
 }
 
 .icon-blue {
-  background-image: url("../bootstrap/glyphicons-halflings-blue.png");
+  background-image: url("/assets/bootstrap/glyphicons-halflings-blue.png");
 }
 
-.icon-darkblue { background-image: url("../bootstrap/glyphicons-halflings-darkblue.png"); }
+.icon-darkblue { background-image: url("/assets/bootstrap/glyphicons-halflings-darkblue.png"); }
 
 
 .icon-glass {
@@ -4750,12 +4750,12 @@ table.table thead .sorting_desc_disabled {
 	*cursor: hand;
 }
 
-table.table thead .sorting { background: url('../sort_both.png') no-repeat center right; }
-table.table thead .sorting_asc { background: url('../sort_asc.png') no-repeat center right; }
-table.table thead .sorting_desc { background: url('../sort_desc.png') no-repeat center right; }
+table.table thead .sorting { background: url('/assets/sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('/assets/sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('/assets/sort_desc.png') no-repeat center right; }
 
-table.table thead .sorting_asc_disabled { background: url('../sort_asc_disabled.png') no-repeat center right; }
-table.table thead .sorting_desc_disabled { background: url('../sort_desc_disabled.png') no-repeat center right; }
+table.table thead .sorting_asc_disabled { background: url('/assets/sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('/assets/sort_desc_disabled.png') no-repeat center right; }
 
 table.dataTable th:active {
 	outline: none;
