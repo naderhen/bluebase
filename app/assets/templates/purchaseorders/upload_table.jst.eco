@@ -1,0 +1,17 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>BOX</th>
+			<th>ITEM</th>
+			<th>WEIGHT</th>
+			<th>CODE</th>
+			<th>COST</th>
+			<th>CORE GRADE</th>
+			<th>FRESHNESS</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+
+<button id="confirm-inventory" class="btn btn-success">Confirm Inventory</button>

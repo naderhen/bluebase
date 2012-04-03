@@ -28726,6 +28726,85 @@ $.fn.dataTableExt.afnFiltering.push(
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
+  this.JST["items/draft_item"] = function(__obj) {
+    if (!__obj) __obj = {};
+    var __out = [], __capture = function(callback) {
+      var out = __out, result;
+      __out = [];
+      callback.call(this);
+      result = __out.join('');
+      __out = out;
+      return __safe(result);
+    }, __sanitize = function(value) {
+      if (value && value.ecoSafe) {
+        return value;
+      } else if (typeof value !== 'undefined' && value != null) {
+        return __escape(value);
+      } else {
+        return '';
+      }
+    }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+    __safe = __obj.safe = function(value) {
+      if (value && value.ecoSafe) {
+        return value;
+      } else {
+        if (!(typeof value !== 'undefined' && value != null)) value = '';
+        var result = new String(value);
+        result.ecoSafe = true;
+        return result;
+      }
+    };
+    if (!__escape) {
+      __escape = __obj.escape = function(value) {
+        return ('' + value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      };
+    }
+    (function() {
+      (function() {
+      
+        __out.push('<td>');
+      
+        __out.push(__sanitize(this.item.get('box_number')));
+      
+        __out.push('</td>\n<td>');
+      
+        __out.push(__sanitize(this.item.get('item_number')));
+      
+        __out.push('</td>\n<td>');
+      
+        __out.push(__sanitize(this.item.get('weight')));
+      
+        __out.push('</td>\n<td>');
+      
+        __out.push(__sanitize(this.item.get('code')));
+      
+        __out.push('</td>\n<td>');
+      
+        __out.push(__sanitize(this.item.get('cost')));
+      
+        __out.push('</td>\n<td>');
+      
+        __out.push(__sanitize(this.item.get('core_grade')));
+      
+        __out.push('</td>\n<td>');
+      
+        __out.push(__sanitize(this.item.get('freshness_grade')));
+      
+        __out.push('</td>\n');
+      
+      }).call(this);
+      
+    }).call(__obj);
+    __obj.safe = __objSafe, __obj.escape = __escape;
+    return __out.join('');
+  };
+}).call(this);
+(function() {
+  this.JST || (this.JST = {});
   this.JST["items/functions"] = function(__obj) {
     if (!__obj) __obj = {};
     var __out = [], __capture = function(callback) {
@@ -28853,7 +28932,7 @@ $.fn.dataTableExt.afnFiltering.push(
           __out.push('\n\t              \t\t</label>\n\t\t\t\t\t</div>\n\t\t\t\t');
         }
       
-        __out.push('\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n\n\n<div class="well">\n\t<h3>Product Info</h3>\n</div>\n\n<div class="well">\n\t<form id="item-form" class="form-horizontal">\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<label>PO #</label>\n\t\t\t\t<input id="po_number" type="text" class="input-small" placeholder="PO#">\n\t\t\t\t<label>Item #</label>\n\t\t\t\t<input id="item_number" type="text" class="input-small" placeholder="Item #">\n\t\t\t\t<label>Species</label>\n\t\t\t\t<input id="species" type="text" class="input-small" placeholder="Species">\n\t\t\t\t<label>Subspecies</label>\n\t\t\t\t<input id="subspecies" type="text" class="input-small" placeholder="Subspecies">\n\t\t\t\t<label>Shipper Grade</label>\n\t\t\t\t<input id="shipper_grade" type="text" class="input-small" placeholder="Shipper Grade">\n\t\t\t</div>\n\t\t\t<div class="span2">\n\t\t\t\t<label>Box #</label>\n\t\t\t\t<input id="box_number" type="text" class="input-small" placeholder="Box #">\n\t\t\t\t<label>Weight</label>\n\t\t\t\t<input id="weight" type="text" class="input-small" placeholder="Weight">\n\t\t\t\t<label>Type</label>\n\t\t\t\t<input id="type" type="text" class="input-small" placeholder="Type">\n\t\t\t\t<label>Cut</label>\n\t\t\t\t<input id="cut" type="text" class="input-small" placeholder="Cut">\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span4">\n\t\t\t\t<h2>Purchase Order Info</h2>\n\t\t\t\t<div class="span2">\n\t\t\t\t\t<dl class="dl-horizontal">\n\t\t\t\t        <dt>DOA:</dt>\n\t\t\t\t        <dd>3/22/2012</dd>\n\t\t\t\t        <dt>Origin:</dt>\n\t\t\t\t        <dd>Brazil</dd>\n\t\t\t\t        <dt>Code:</dt>\n\t\t\t\t        <dd>MIA-4686-2403</dd>\n\t\t\t\t        <dt>Shipper:</dt>\n\t\t\t\t        <dd>******* *****</dd>\n\t\t\t      \t</dl>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n');
+        __out.push('\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n\n\n<div class="well">\n\t<h3>Product Info</h3>\n</div>\n\n<div class="well">\n\t<form id="item-form" class="form-horizontal">\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<label>PO #</label>\n\t\t\t\t<input id="po_number" type="text" class="input-small" placeholder="PO#">\n\t\t\t\t<label>Item #</label>\n\t\t\t\t<input id="item_number" type="text" class="input-small" placeholder="Item #">\n\t\t\t\t<label>Species</label>\n\t\t\t\t<input id="species" type="text" class="input-small" placeholder="Species">\n\t\t\t\t<label>Subspecies</label>\n\t\t\t\t<input id="subspecies" type="text" class="input-small" placeholder="Subspecies">\n\t\t\t\t<label>Shipper Grade</label>\n\t\t\t\t<input id="shipper_grade" type="text" class="input-small" placeholder="Shipper Grade">\n\t\t\t</div>\n\t\t\t<div class="span2">\n\t\t\t\t<label>Box #</label>\n\t\t\t\t<input id="box_number" type="text" class="input-small" placeholder="Box #">\n\t\t\t\t<label>Weight</label>\n\t\t\t\t<input id="weight" type="text" class="input-small" placeholder="Weight">\n\t\t\t\t<label>Type</label>\n\t\t\t\t<input id="type" type="text" class="input-small" placeholder="Type">\n\t\t\t\t<label>Cut</label>\n\t\t\t\t<input id="cut" type="text" class="input-small" placeholder="Cut">\n\t\t\t\t<label>Customer</label>\n\t\t\t\t<input id="customer_autocomplete" type="text" class="input-small" placeholder="Customer ID">\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span4">\n\t\t\t\t<h2>Purchase Order Info</h2>\n\t\t\t\t<div class="span2">\n\t\t\t\t\t<dl class="dl-horizontal">\n\t\t\t\t        <dt>DOA:</dt>\n\t\t\t\t        <dd>3/22/2012</dd>\n\t\t\t\t        <dt>Origin:</dt>\n\t\t\t\t        <dd>Brazil</dd>\n\t\t\t\t        <dt>Code:</dt>\n\t\t\t\t        <dd>MIA-4686-2403</dd>\n\t\t\t\t        <dt>Shipper:</dt>\n\t\t\t\t        <dd>******* *****</dd>\n\t\t\t      \t</dl>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n');
       
       }).call(this);
       
@@ -29075,7 +29154,7 @@ $.fn.dataTableExt.afnFiltering.push(
           __out.push('</option>\n\t\t\t\t');
         }
       
-        __out.push('\n\t\t\t</select>\n\t\t</div>\n\t\t<div id="upload-container" class="span6"></div>\n\t</div>\n\t<div class="modal-footer">\n\t\t<a href="#" class="save btn btn-primary">Save changes</a>\n\t    <a href="#" class="btn" data-dismiss="modal">Close</a>\n\t</div>\n</div>\n');
+        __out.push('\n\t\t\t</select>\n\t\t</div>\n\t\t<div id="upload-container" class="span6"></div>\n\t</div>\n\t<div class="modal-footer">\n\t\t<div class="progress progress-striped progress-danger active">\n        \t<div id="progress-bar" class="bar" style="width: 33%"></div>\n      \t</div>\n      \t<h4 id="progress-instructions">Enter the Purchase Order Information, then click Save Changes!</h4>\n\t</div>\n\t<div id="modal-bottom" class="modal-footer">\n\t\t<a href="#" class="save btn btn-primary">Save changes</a>\n\t    <a href="#" class="btn" data-dismiss="modal">Close</a>\n\t</div>\n</div>\n');
       
       }).call(this);
       
@@ -29328,11 +29407,11 @@ $.fn.dataTableExt.afnFiltering.push(
     (function() {
       (function() {
       
-        __out.push('<div class="span6">\n\t<form id="upload-attachment-form">\n\t\t<input type="text" name="purchaseorder_id" value="');
+        __out.push('<div class="span6">\n\t<form id="upload-attachment-form">\n\t\t<input style="display: none;" type="text" name="purchaseorder_id" value="');
       
         __out.push(__sanitize(this.model.get('id')));
       
-        __out.push('">\n\t\t<input class="input-file" id="document" name="document" type="file">\n\t\t<button type="submit">Submit</button>\n\t</form>\n</div>\n');
+        __out.push('">\n\t\t<input class="input-file" id="document" name="document" type="file">\n\t\t<button class="btn btn-success" type="submit">Upload CSV!</button>\n\t</form>\n</div>\n');
       
       }).call(this);
       
@@ -29340,6 +29419,78 @@ $.fn.dataTableExt.afnFiltering.push(
     __obj.safe = __objSafe, __obj.escape = __escape;
     return __out.join('');
   };
+}).call(this);
+(function() {
+  this.JST || (this.JST = {});
+  this.JST["purchaseorders/upload_table"] = function(__obj) {
+    if (!__obj) __obj = {};
+    var __out = [], __capture = function(callback) {
+      var out = __out, result;
+      __out = [];
+      callback.call(this);
+      result = __out.join('');
+      __out = out;
+      return __safe(result);
+    }, __sanitize = function(value) {
+      if (value && value.ecoSafe) {
+        return value;
+      } else if (typeof value !== 'undefined' && value != null) {
+        return __escape(value);
+      } else {
+        return '';
+      }
+    }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+    __safe = __obj.safe = function(value) {
+      if (value && value.ecoSafe) {
+        return value;
+      } else {
+        if (!(typeof value !== 'undefined' && value != null)) value = '';
+        var result = new String(value);
+        result.ecoSafe = true;
+        return result;
+      }
+    };
+    if (!__escape) {
+      __escape = __obj.escape = function(value) {
+        return ('' + value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      };
+    }
+    (function() {
+      (function() {
+      
+        __out.push('<table class="table table-striped">\n\t<thead>\n\t\t<tr>\n\t\t\t<th>BOX</th>\n\t\t\t<th>ITEM</th>\n\t\t\t<th>WEIGHT</th>\n\t\t\t<th>CODE</th>\n\t\t\t<th>COST</th>\n\t\t\t<th>CORE GRADE</th>\n\t\t\t<th>FRESHNESS</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t</tbody>\n</table>\n\n<button id="confirm-inventory" class="btn btn-success">Confirm Inventory</button>\n');
+      
+      }).call(this);
+      
+    }).call(__obj);
+    __obj.safe = __objSafe, __obj.escape = __escape;
+    return __out.join('');
+  };
+}).call(this);
+(function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  Bluebase.Models.Customer = (function(_super) {
+
+    __extends(Customer, _super);
+
+    function Customer() {
+      Customer.__super__.constructor.apply(this, arguments);
+    }
+
+    Customer.prototype.url = function() {
+      return '/api/customers/' + this.id;
+    };
+
+    return Customer;
+
+  })(Backbone.Model);
+
 }).call(this);
 (function() {
   var __hasProp = Object.prototype.hasOwnProperty,
@@ -29354,8 +29505,16 @@ $.fn.dataTableExt.afnFiltering.push(
     }
 
     Item.prototype.url = function() {
-      return '/api/items/' + this.id;
+      var base;
+      base = 'api/items';
+      if (this.isNew()) {
+        return base;
+      } else {
+        return base + '/' + this.id;
+      }
     };
+
+    Item.prototype.urlRoot = 'api/items';
 
     return Item;
 
@@ -29469,6 +29628,25 @@ $.fn.dataTableExt.afnFiltering.push(
   var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
+  Bluebase.Collections.Customers = (function(_super) {
+
+    __extends(Customers, _super);
+
+    function Customers() {
+      Customers.__super__.constructor.apply(this, arguments);
+    }
+
+    Customers.prototype.url = '/api/customers';
+
+    return Customers;
+
+  })(Backbone.Collection);
+
+}).call(this);
+(function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
   Bluebase.Collections.Items = (function(_super) {
 
     __extends(Items, _super);
@@ -29564,6 +29742,34 @@ $.fn.dataTableExt.afnFiltering.push(
   var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
+  Bluebase.Views.DraftItem = (function(_super) {
+
+    __extends(DraftItem, _super);
+
+    function DraftItem() {
+      DraftItem.__super__.constructor.apply(this, arguments);
+    }
+
+    DraftItem.prototype.template = JST['items/draft_item'];
+
+    DraftItem.prototype.tagName = 'tr';
+
+    DraftItem.prototype.render = function() {
+      $(this.el).html(this.template({
+        item: this.model
+      }));
+      return this;
+    };
+
+    return DraftItem;
+
+  })(Backbone.View);
+
+}).call(this);
+(function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
   Bluebase.Views.Item = (function(_super) {
 
     __extends(Item, _super);
@@ -29602,14 +29808,16 @@ $.fn.dataTableExt.afnFiltering.push(
     };
 
     Item.prototype.fayeUpdate = function(data) {
-      var comment;
+      var comment, sticky_text;
       this.model.set(data.model);
       comment = $(this.el).find('.icon-comment');
       $(this.el).addClass('fayeUpdated').removeClass('changed');
-      return comment.attr({
+      comment.attr({
         rel: "tooltip",
         title: "Edited by: " + data.user.name
       }).tooltip().fadeIn();
+      sticky_text = "" + data.user.name + " updated PO# " + (this.model.get('po_number')) + " " + (this.model.get('box_number')) + " - " + (this.model.get('item_number'));
+      return $.sticky(sticky_text);
     };
 
     Item.prototype.savedItem = function() {
@@ -29724,7 +29932,7 @@ $.fn.dataTableExt.afnFiltering.push(
     };
 
     ItemsFunctions.prototype.render = function() {
-      var freshness_grade_options, grade_options, species, tag_options, tail_grade_options, texture_grade_options;
+      var customer_data, freshness_grade_options, grade_options, species, tag_options, tail_grade_options, texture_grade_options;
       species = this.model.get('species').toLowerCase();
       grade_options = tail_grade_options = freshness_grade_options = texture_grade_options = [];
       grade_options = ["1++", "1+", "1", "1-", "2+", "2H", "2G", "2", "2-", "3", "4"];
@@ -29756,6 +29964,18 @@ $.fn.dataTableExt.afnFiltering.push(
         freshness_grade_options: freshness_grade_options,
         texture_grade_options: texture_grade_options
       }));
+      customer_data = _.map(customers.models, function(customer) {
+        return {
+          value: customer.get('id'),
+          label: customer.get('name')
+        };
+      });
+      this.$('#customer_autocomplete').autocomplete({
+        source: customer_data,
+        select: function(event, ui) {
+          return console.log(event, ui);
+        }
+      });
       Backbone.ModelBinding.bind(this);
       return this;
     };
@@ -29764,7 +29984,6 @@ $.fn.dataTableExt.afnFiltering.push(
       var checked_tags;
       checked_tags = _.pluck(this.$("input.tag_list_check:checked"), 'value');
       this.model.set('tag_list', checked_tags);
-      console.log(this.model);
       this.model.save({
         success: function() {
           return this.model.trigger('change');
@@ -30045,7 +30264,8 @@ $.fn.dataTableExt.afnFiltering.push(
     PurchaseorderUpload.prototype.template = JST['purchaseorders/upload'];
 
     PurchaseorderUpload.prototype.render = function() {
-      var purchaseorder;
+      var purchaseorder, self;
+      self = this;
       purchaseorder = this.model;
       $(this.el).html(this.template({
         model: this.model
@@ -30077,7 +30297,7 @@ $.fn.dataTableExt.afnFiltering.push(
             upload_table_view = new Bluebase.Views.PurchaseorderUploadTable({
               collection: uploading_collection
             });
-            return upload_table_view.render();
+            return $(self.el).html(upload_table_view.render().el);
           }
         });
         return false;
@@ -30091,7 +30311,8 @@ $.fn.dataTableExt.afnFiltering.push(
 
 }).call(this);
 (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
   Bluebase.Views.PurchaseorderUploadTable = (function(_super) {
@@ -30099,14 +30320,51 @@ $.fn.dataTableExt.afnFiltering.push(
     __extends(PurchaseorderUploadTable, _super);
 
     function PurchaseorderUploadTable() {
+      this.appendDraftItem = __bind(this.appendDraftItem, this);
       PurchaseorderUploadTable.__super__.constructor.apply(this, arguments);
     }
 
     PurchaseorderUploadTable.prototype.template = JST['purchaseorders/upload_table'];
 
+    PurchaseorderUploadTable.prototype.events = {
+      'click #confirm-inventory': 'uploadInventory'
+    };
+
+    PurchaseorderUploadTable.prototype.initialize = function() {
+      $("#progress-instructions").html("CSV Uploaded but NOT saved yet. Please review and click Confirm!");
+      $("#progress-bar").parents('.progress').removeClass('progress-warning');
+      return $("#progress-bar").animate({
+        width: '85%'
+      });
+    };
+
     PurchaseorderUploadTable.prototype.render = function() {
-      console.log(this.collection);
+      $(this.el).html(this.template({
+        collection: this.collection
+      }));
+      this.collection.each(this.appendDraftItem);
       return this;
+    };
+
+    PurchaseorderUploadTable.prototype.appendDraftItem = function(item) {
+      var view;
+      view = new Bluebase.Views.DraftItem({
+        model: item
+      });
+      return this.$('table tbody').append(view.render().el);
+    };
+
+    PurchaseorderUploadTable.prototype.uploadInventory = function(event) {
+      $.each(this.collection.models, function(i, model) {
+        return model.save();
+      });
+      $("#progress-instructions").html("Inventory successfully added to Purchaseorder! You're Done!");
+      $("#progress-bar").parents('.progress').addClass('progress-success');
+      $("#progress-bar").animate({
+        width: '100%'
+      });
+      $("#modal-bottom").find('.save').hide();
+      return $("#modal-bottom").slideDown('slow');
     };
 
     return PurchaseorderUploadTable;
@@ -30165,7 +30423,13 @@ $.fn.dataTableExt.afnFiltering.push(
       upload_view = new Bluebase.Views.PurchaseorderUpload({
         model: this.model
       });
-      return this.$('#upload-container').hide().html(upload_view.render().el).slideDown('slow');
+      this.$('#upload-container').hide().html(upload_view.render().el).slideDown('slow');
+      $("#progress-instructions").html("PO #" + (this.model.get('id')) + " saved! Upload an inventory CSV.");
+      $("#progress-bar").parents('.progress').removeClass('progress-danger').addClass('progress-warning');
+      $("#progress-bar").animate({
+        width: '66%'
+      });
+      return $("#modal-bottom").slideUp('slow');
     };
 
     return PurchaseordersCreate;
@@ -32472,6 +32736,105 @@ $(document).ready(function() {
   });
 
 })(jQuery);
+// Sticky v1.0 by Daniel Raftery
+// http://thrivingkings.com/sticky
+//
+// http://twitter.com/ThrivingKings
+
+(function( $ )
+	{
+	
+	// Using it without an object
+	$.sticky = function(note, options, callback) { return $.fn.sticky(note, options, callback); };
+	
+	$.fn.sticky = function(note, options, callback) 
+		{
+		// Default settings
+		var position = 'top-right'; // top-left, top-right, bottom-left, or bottom-right
+		
+		var settings =
+			{
+			'speed'			:	'fast',	 // animations: fast, slow, or integer
+			'duplicates'	:	true,  // true or false
+			'autoclose'		:	5000  // integer or false
+			};
+		
+		// Passing in the object instead of specifying a note
+		if(!note)
+			{ note = this.html(); }
+		
+		if(options)
+			{ $.extend(settings, options); }
+		
+		// Variables
+		var display = true;
+		var duplicate = 'no';
+		
+		// Somewhat of a unique ID
+		var uniqID = Math.floor(Math.random()*99999);
+		
+		// Handling duplicate notes and IDs
+		$('.sticky-note').each(function()
+			{
+			if($(this).html() == note && $(this).is(':visible'))
+				{ 
+				duplicate = 'yes';
+				if(!settings['duplicates'])
+					{ display = false; }
+				}
+			if($(this).attr('id')==uniqID)
+				{ uniqID = Math.floor(Math.random()*9999999); }
+			});
+		
+		// Make sure the sticky queue exists
+		if(!$('body').find('.sticky-queue').html())
+			{ $('body').append('<div class="sticky-queue ' + position + '"></div>'); }
+		
+		// Can it be displayed?
+		if(display)
+			{
+			// Building and inserting sticky note
+			$('.sticky-queue').prepend('<div class="sticky border-' + position + '" id="' + uniqID + '"></div>');
+			$('#' + uniqID).append('<img src="/assets/close.png" class="sticky-close" rel="' + uniqID + '" title="Close" />');
+			$('#' + uniqID).append('<div class="sticky-note" rel="' + uniqID + '">' + note + '</div>');
+			
+			// Smoother animation
+			var height = $('#' + uniqID).height();
+			$('#' + uniqID).css('height', height);
+			
+			$('#' + uniqID).slideDown(settings['speed']);
+			display = true;
+			}
+		
+		// Listeners
+		$('.sticky').ready(function()
+			{
+			// If 'autoclose' is enabled, set a timer to close the sticky
+			if(settings['autoclose'])
+				{ $('#' + uniqID).delay(settings['autoclose']).fadeOut(settings['speed']); }
+			});
+		// Closing a sticky
+		$('.sticky-close').click(function()
+			{ $('#' + $(this).attr('rel')).dequeue().fadeOut(settings['speed']); });
+		
+		
+		// Callback data
+		var response = 
+			{
+			'id'		:	uniqID,
+			'duplicate'	:	duplicate,
+			'displayed'	: 	display,
+			'position'	:	position
+			}
+		
+		// Callback function?
+		if(callback)
+			{ callback(response); }
+		else
+			{ return(response); }
+		
+		}
+	})( jQuery );
 (function() {
 
 

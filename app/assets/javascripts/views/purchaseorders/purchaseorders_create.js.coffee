@@ -33,3 +33,7 @@ class Bluebase.Views.PurchaseordersCreate extends Backbone.View
 	showUploadForm: ->
 		upload_view = new Bluebase.Views.PurchaseorderUpload(model: @model)
 		@$('#upload-container').hide().html(upload_view.render().el).slideDown('slow')
+		$("#progress-instructions").html("PO ##{@model.get('id')} saved! Upload an inventory CSV.")
+		$("#progress-bar").parents('.progress').removeClass('progress-danger').addClass('progress-warning')
+		$("#progress-bar").animate({width: '66%'})
+		$("#modal-bottom").slideUp('slow')

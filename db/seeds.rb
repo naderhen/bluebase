@@ -41,6 +41,12 @@ Shipper.delete_all
 	puts 'New Shipper Created: ' << shipper.name
 end
 
+Customer.delete_all
+100.times do
+	customer = Customer.create! name: Faker::Name.name
+	puts 'New Customer Created: ' << customer.name
+end
+
 Purchaseorder.delete_all
 Item.delete_all
 Attachment.delete_all

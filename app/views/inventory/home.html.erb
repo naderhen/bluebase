@@ -7,6 +7,8 @@
 	var warehouses = new Bluebase.Collections.Warehouses;
 	warehouses.reset(<%= @warehouses.to_json.html_safe %>);
 	var items_collection = new Bluebase.Collections.Items;
+	var customers = new Bluebase.Collections.Customers;
+	customers.reset(<%= @customers.to_json.html_safe %>);
 </script>
 
 <div class="page-header">

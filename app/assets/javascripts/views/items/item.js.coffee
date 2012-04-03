@@ -29,6 +29,8 @@ class Bluebase.Views.Item extends Backbone.View
 			rel: "tooltip"
 			title: "Edited by: " + data.user.name
 			}).tooltip().fadeIn()
+		sticky_text = "#{data.user.name} updated PO# #{@model.get('po_number')} #{@model.get('box_number')} - #{@model.get('item_number')}"
+		$.sticky(sticky_text)
 
 	savedItem: ->
 		$(@el).removeClass('changed highlight')

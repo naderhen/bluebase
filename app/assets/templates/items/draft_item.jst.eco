@@ -1,0 +1,7 @@
+<td><%= @item.get('box_number') %></td>
+<td><%= @item.get('item_number') %></td>
+<td><%= @item.get('weight') %></td>
+<td><%= @item.get('code') %></td>
+<td><%= @item.get('cost') %></td>
+<td><%= @item.get('core_grade') %></td>
+<td><%= @item.get('freshness_grade') %></td>

@@ -24,14 +24,32 @@ class Bluebase.Views.ItemsFunctions extends Backbone.View
 			else
 				tag_options = ["Damage", "Smell", "FDA"]
 
-		$(@el).html(@template({item: @model, tag_options: tag_options, tagged: @model.get('tag_list'), grade_options: grade_options, tail_grade_options: tail_grade_options, freshness_grade_options: freshness_grade_options, texture_grade_options: texture_grade_options}))
+		$(@el).html(@template(
+			{
+				item: @model,
+				tag_options: tag_options,
+				tagged: @model.get('tag_list'),
+				grade_options: grade_options,
+				tail_grade_options: tail_grade_options,
+				freshness_grade_options: freshness_grade_options,
+				texture_grade_options: texture_grade_options
+			}
+		))
+
+		customer_data = _.map customers.models, (customer) ->
+			{ value: customer.get('id'), label: customer.get('name') }
+
+		@$('#customer_autocomplete').autocomplete({
+				source: customer_data
+				select: (event, ui) ->
+					console.log event, ui
+			})
 		Backbone.ModelBinding.bind(this)
 		this
 
 	save: (event) ->
 		checked_tags = _.pluck(@$("input.tag_list_check:checked"), 'value')
 		@model.set('tag_list', checked_tags)
-		console.log(@model)
 		@model.save
 			success: ->
 				@model.trigger('change')

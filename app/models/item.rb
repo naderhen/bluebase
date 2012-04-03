@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
 	belongs_to :purchaseorder
+	belongs_to :customer
 	has_paper_trail
 	acts_as_taggable
 

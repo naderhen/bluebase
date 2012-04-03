@@ -6,6 +6,10 @@ class ItemsController < ApplicationController
 		respond_with @items
 	end
 
+	def create
+		respond_with Item.create(params[:item])
+	end
+
 	def update
 		@item = Item.find(params[:id])
 		@params = params

@@ -4,6 +4,7 @@ bootstrap/glyphicons-halflings-blue.png: bootstrap/glyphicons-halflings-blue.png
 bootstrap/glyphicons-halflings-darkblue.png: bootstrap/glyphicons-halflings-darkblue.png
 bootstrap/glyphicons-halflings-white.png: bootstrap/glyphicons-halflings-white.png
 bootstrap/glyphicons-halflings.png: bootstrap/glyphicons-halflings.png
+close.png: close.png
 sort_asc.png: sort_asc.png
 sort_asc_disabled.png: sort_asc_disabled.png
 sort_both.png: sort_both.png

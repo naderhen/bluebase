@@ -3,6 +3,7 @@ class Bluebase.Views.PurchaseorderUpload extends Backbone.View
 	template: JST['purchaseorders/upload']
 
 	render: ->
+		self = @
 		purchaseorder = @model
 		$(@el).html(@template(model: @model))
 
@@ -29,7 +30,7 @@ class Bluebase.Views.PurchaseorderUpload extends Backbone.View
 						uploading_collection.add(model)
 
 					upload_table_view = new Bluebase.Views.PurchaseorderUploadTable(collection: uploading_collection)
-					upload_table_view.render()
+					$(self.el).html(upload_table_view.render().el)
 				)
 			return false
 		this

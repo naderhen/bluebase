@@ -31,6 +31,12 @@
 		<div id="upload-container" class="span6"></div>
 	</div>
 	<div class="modal-footer">
+		<div class="progress progress-striped progress-danger active">
+        	<div id="progress-bar" class="bar" style="width: 33%"></div>
+      	</div>
+      	<h4 id="progress-instructions">Enter the Purchase Order Information, then click Save Changes!</h4>
+	</div>
+	<div id="modal-bottom" class="modal-footer">
 		<a href="#" class="save btn btn-primary">Save changes</a>
 	    <a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>

@@ -4,6 +4,7 @@ class InventoryController < ApplicationController
 		@purchaseorders = Purchaseorder.all.to_a
 		@items = @purchaseorders.last.items
 		@shippers = Shipper.all.to_a
+		@customers = Customer.all.to_a
 		@warehouses = Warehouse.all.to_a
 		@user = current_user
 	end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331231738) do
+ActiveRecord::Schema.define(:version => 20120403030915) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(:version => 20120331231738) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+  end
+
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "item_codes", :force => true do |t|
@@ -65,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120331231738) do
     t.string   "tail_grade"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
   end
 
   create_table "permissions", :force => true do |t|
