@@ -4,6 +4,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'
 gem 'mysql2'
 gem 'jquery-rails'
+gem 'thin'
 group :assets do
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
