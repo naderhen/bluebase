@@ -26,14 +26,16 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 		purchaseorder = @.options.purchaseorder
 		$(@el).html(@template(purchaseorder: purchaseorder, batch_collection: batch_collection))
 		@collection.each(@appendItem)
-		items_table = @$('table').dataTable( {
-			"sDom": 'W<"clear">lfrtipz',
+
+		items_table = @$('table').dataTable({
+			"sDom": 'W<"clear">Rlfrtipz',
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
-				"sLengthMenu": "_MENU_ records per page"
+		  	"sLengthMenu": "_MENU_ records per page"
 			},
+
 			"iDisplayLength": 35,
-			"aaSorting": [[ 2, "asc"],[3, "asc"]]
+			"aaSorting": [[2, "asc"], [3, "asc"]]
 		});
 
 		@$('table').selectable
@@ -42,6 +44,7 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 				selected_items = me.$('.ui-selected')
 				if selected_items.length > 1
 					batch_collection.reset()
+					me.$('table').find('.icon-check.icon-darkblue').removeClass('icon-darkblue')
 					selected_items.trigger('addToSelection')
 				else
 					batch_collection.reset()

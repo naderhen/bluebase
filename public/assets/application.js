@@ -30127,7 +30127,7 @@ $.fn.dataTableExt.afnFiltering.push(
           __out.push('\n\t              \t\t</label>\n\t\t\t\t\t</div>\n\t\t\t\t');
         }
       
-        __out.push('\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n\n\n<div class="well">\n\t<h3>Product Info</h3>\n</div>\n\n<div class="well">\n\t<form id="item-form" class="form-horizontal">\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<label>PO #</label>\n\t\t\t\t<input id="po_number" type="text" class="input-small" placeholder="PO#">\n\t\t\t\t<label>Item #</label>\n\t\t\t\t<input id="item_number" type="text" class="input-small" placeholder="Item #">\n\t\t\t\t<label>Species</label>\n\t\t\t\t<input id="species" type="text" class="input-small" placeholder="Species">\n\t\t\t\t<label>Subspecies</label>\n\t\t\t\t<input id="subspecies" type="text" class="input-small" placeholder="Subspecies">\n\t\t\t\t<label>Shipper Grade</label>\n\t\t\t\t<input id="shipper_grade" type="text" class="input-small" placeholder="Shipper Grade">\n\t\t\t</div>\n\t\t\t<div class="span2">\n\t\t\t\t<label>Box #</label>\n\t\t\t\t<input id="box_number" type="text" class="input-small" placeholder="Box #">\n\t\t\t\t<label>Weight</label>\n\t\t\t\t<input id="weight" type="text" class="input-small" placeholder="Weight">\n\t\t\t\t<label>Type</label>\n\t\t\t\t<input id="type" type="text" class="input-small" placeholder="Type">\n\t\t\t\t<label>Cut</label>\n\t\t\t\t<input id="cut" type="text" class="input-small" placeholder="Cut">\n\t\t\t\t<label>Customer</label>\n\t\t\t\t<input id="customer_autocomplete" type="text" class="input-small" placeholder="Customer ID">\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span4">\n\t\t\t\t<h2>Purchase Order Info</h2>\n\t\t\t\t<div class="span2">\n\t\t\t\t\t<dl class="dl-horizontal">\n\t\t\t\t        <dt>DOA:</dt>\n\t\t\t\t        <dd>3/22/2012</dd>\n\t\t\t\t        <dt>Origin:</dt>\n\t\t\t\t        <dd>Brazil</dd>\n\t\t\t\t        <dt>Code:</dt>\n\t\t\t\t        <dd>MIA-4686-2403</dd>\n\t\t\t\t        <dt>Shipper:</dt>\n\t\t\t\t        <dd>******* *****</dd>\n\t\t\t      \t</dl>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n');
+        __out.push('\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n\n\n<div class="well">\n\t<h3>Product Info</h3>\n</div>\n\n<div class="well">\n\t<form id="item-form" class="form-horizontal">\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<label>PO #</label>\n\t\t\t\t<input id="po_number" type="text" class="input-small" placeholder="PO#">\n\t\t\t\t<label>Item #</label>\n\t\t\t\t<input id="item_number" type="text" class="input-small" placeholder="Item #">\n\t\t\t\t<label>Species</label>\n\t\t\t\t<input id="species" type="text" class="input-small" placeholder="Species">\n\t\t\t\t<label>Subspecies</label>\n\t\t\t\t<input id="subspecies" type="text" class="input-small" placeholder="Subspecies">\n\t\t\t\t<label>Shipper Grade</label>\n\t\t\t\t<input id="shipper_grade" type="text" class="input-small" placeholder="Shipper Grade">\n\t\t\t</div>\n\t\t\t<div class="span2">\n\t\t\t\t<label>Box #</label>\n\t\t\t\t<input id="box_number" type="text" class="input-small" placeholder="Box #">\n\t\t\t\t<label>Weight</label>\n\t\t\t\t<input id="weight" type="text" class="input-small" placeholder="Weight">\n\t\t\t\t<label>Type</label>\n\t\t\t\t<input id="type" type="text" class="input-small" placeholder="Type">\n\t\t\t\t<label>Cut</label>\n\t\t\t\t<input id="cut" type="text" class="input-small" placeholder="Cut">\n\t\t\t\t<label>Customer</label>\n\t\t\t\t<input id="customer_autocomplete" type="text" class="input-small" placeholder="Customer ID">\n\t\t\t\t<input id="customer_id" type="text" class="input-small" style="display: none;">\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span2">\n\t\t\t\t<button type="submit" class="btn btn-primary">Save changes</button>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="row">\n\t\t\t<div class="span4">\n\t\t\t\t<h2>Purchase Order Info</h2>\n\t\t\t\t<div class="span2">\n\t\t\t\t\t<dl class="dl-horizontal">\n\t\t\t\t        <dt>DOA:</dt>\n\t\t\t\t        <dd>3/22/2012</dd>\n\t\t\t\t        <dt>Origin:</dt>\n\t\t\t\t        <dd>Brazil</dd>\n\t\t\t\t        <dt>Code:</dt>\n\t\t\t\t        <dd>MIA-4686-2403</dd>\n\t\t\t\t        <dt>Shipper:</dt>\n\t\t\t\t        <dd>******* *****</dd>\n\t\t\t      \t</dl>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</form>\n</div>\n');
       
       }).call(this);
       
@@ -31133,7 +31133,8 @@ $.fn.dataTableExt.afnFiltering.push(
     };
 
     ItemsFunctions.prototype.render = function() {
-      var customer_data, freshness_grade_options, grade_options, species, tag_options, tail_grade_options, texture_grade_options;
+      var customer_data, freshness_grade_options, grade_options, me, species, tag_options, tail_grade_options, texture_grade_options;
+      me = this;
       species = this.model.get('species').toLowerCase();
       grade_options = tail_grade_options = freshness_grade_options = texture_grade_options = [];
       grade_options = ["1++", "1+", "1", "1-", "2+", "2H", "2G", "2", "2-", "3", "4"];
@@ -31174,7 +31175,11 @@ $.fn.dataTableExt.afnFiltering.push(
       this.$('#customer_autocomplete').autocomplete({
         source: customer_data,
         select: function(event, ui) {
-          return console.log(event, ui);
+          me.$('#customer_autocomplete').val(ui.item.label);
+          me.$('#customer_id').val(ui.item.value);
+          return me.model.set({
+            customer_id: ui.item.value
+          });
         }
       });
       Backbone.ModelBinding.bind(this);
@@ -31248,7 +31253,7 @@ $.fn.dataTableExt.afnFiltering.push(
       }));
       this.collection.each(this.appendItem);
       items_table = this.$('table').dataTable({
-        "sDom": 'W<"clear">lfrtipz',
+        "sDom": 'W<"clear">Rlfrtipz',
         "sPaginationType": "bootstrap",
         "oLanguage": {
           "sLengthMenu": "_MENU_ records per page"
@@ -31263,6 +31268,7 @@ $.fn.dataTableExt.afnFiltering.push(
           selected_items = me.$('.ui-selected');
           if (selected_items.length > 1) {
             batch_collection.reset();
+            me.$('table').find('.icon-check.icon-darkblue').removeClass('icon-darkblue');
             return selected_items.trigger('addToSelection');
           } else {
             batch_collection.reset();

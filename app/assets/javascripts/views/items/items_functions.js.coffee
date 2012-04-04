@@ -5,6 +5,7 @@ class Bluebase.Views.ItemsFunctions extends Backbone.View
 		'submit': 'save'
 
 	render: ->
+		me = @
 		species = @model.get('species').toLowerCase()
 		
 		grade_options = tail_grade_options = freshness_grade_options = texture_grade_options = []
@@ -42,7 +43,9 @@ class Bluebase.Views.ItemsFunctions extends Backbone.View
 		@$('#customer_autocomplete').autocomplete({
 				source: customer_data
 				select: (event, ui) ->
-					console.log event, ui
+					me.$('#customer_autocomplete').val(ui.item.label)
+					me.$('#customer_id').val(ui.item.value)
+					me.model.set({customer_id: ui.item.value})
 			})
 		Backbone.ModelBinding.bind(this)
 		this

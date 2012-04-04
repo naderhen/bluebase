@@ -97,6 +97,7 @@
 				<input id="cut" type="text" class="input-small" placeholder="Cut">
 				<label>Customer</label>
 				<input id="customer_autocomplete" type="text" class="input-small" placeholder="Customer ID">
+				<input id="customer_id" type="text" class="input-small" style="display: none;">
 			</div>
 		</div>
 		<div class="row">
