@@ -10,7 +10,7 @@ class Bluebase.Views.Item extends Backbone.View
 	initialize: ->
 		@model.on('change', @render, this)
 		@model.on('sync', @savedItem, this)
-		@model.on('faye:update', @fayeUpdate, this)
+		@model.on('pubnub:update', @pubnubUpdate, this)
 		@batch_collection = @.options.batch_collection
 
 	render: ->
@@ -21,7 +21,7 @@ class Bluebase.Views.Item extends Backbone.View
 		Backbone.ModelBinding.bind(this)
 		this
 
-	fayeUpdate: (data) ->
+	pubnubUpdate: (data) ->
 		@model.set(data.model)
 		comment = $(@el).find('.icon-comment')
 		$(@el).addClass('fayeUpdated').removeClass('changed')
@@ -35,7 +35,10 @@ class Bluebase.Views.Item extends Backbone.View
 	savedItem: ->
 		$(@el).removeClass('changed highlight')
 		$(@el).find('.icon-ok').fadeIn();
-		faye.publish('/items/update', {"model": @model, "user": user})
+		PUBNUB.publish({
+                channel : "items_update",
+                message : {"model": @model, "user": user}
+            })
 
 	addToSelection: (event) ->
 		self = @

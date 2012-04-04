@@ -149,6 +149,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)
+    pubnub-ruby (0.0.5)
+      json
     rabl (0.6.6)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -247,6 +249,7 @@ DEPENDENCIES
   paper_trail
   paperclip (~> 3.0)
   pry
+  pubnub-ruby
   rabl
   rails (= 3.2.1)
   rspec-rails (>= 2.9.0.rc2)

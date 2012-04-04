@@ -30,3 +30,4 @@ gem 'eventmachine'
 gem "paperclip", "~> 3.0"
 gem "paper_trail"
 gem "acts-as-taggable-on", "~> 2.2.2"
+gem "pubnub-ruby"

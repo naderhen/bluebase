@@ -9,11 +9,10 @@
     <meta name="author" content="">
     <% if Rails.env == 'development' %>
       <%= stylesheet_link_tag    "application", :media => "all" %>
-      <%= javascript_include_tag "application", "http://localhost:9292/faye.js" %>
+      <%= javascript_include_tag "application" %>
     <% else %>
       <link href="/assets/application.css" media="all" rel="stylesheet" type="text/css">
       <script src="/assets/application.js" type="text/javascript"></script>
-      <script src="http://66.228.41.179:9292/faye.js" type="text/javascript"></script>
     <% end %>
     <%= csrf_meta_tags %>
   </head>
@@ -50,5 +49,35 @@
         <%= yield %>
       </div>
     </div> <!--! end of #container -->
+<div pub-key="pub-e42fbe0f-2e60-40c8-a292-281c19a0517c" sub-key="sub-d36b0514-7db8-11e1-ba7f-97e084cb3142" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
+<script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+<script>(function(){
+
+    // LISTEN FOR MESSAGES
+    PUBNUB.subscribe({
+        channel    : "main",
+        restore    : false,  
+        callback   : function(message) { // RECEIVED A MESSAGE.
+            console.log(message)
+        },
+        disconnect : function() {
+            console.log(
+                "Connection Lost." +
+                "Will auto-reconnect when Online."
+            )
+        },
+        reconnect  : function() {
+            console.log("And we're Back!")
+        },
+        connect    : function() {
+            PUBNUB.publish({
+                channel : "main",
+                message : "Connected to BlueStats Network"
+            })
+
+        }
+    });
+
+})();</script>
   </body>
 </html>

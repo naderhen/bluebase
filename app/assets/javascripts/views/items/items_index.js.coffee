@@ -13,11 +13,14 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 		@batch_collection.on('add remove reset', @updateBatch, this)
 
 		collection = @collection
-		faye.subscribe '/items/update', (data) ->
-			model = data.model
-			updated_model = collection.get(model.id)
-			if typeof(updated_model != 'undefined')
-				updated_model.trigger('faye:update', data)
+		PUBNUB.subscribe({
+			channel: 'items_update',
+			callback: (data) ->
+				model = data.model
+				updated_model = collection.get(model.id)
+				if typeof(updated_model != 'undefined')
+					updated_model.trigger('pubnub:update', data)
+			})
 
 	render: ->
 		purchaseorder = @.options.purchaseorder
