@@ -9,8 +9,7 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 	initialize: ->
 		@collection.on('reset', @render, this)
 		@collection.on('add', @appendItem, this)
-		@batch_collection = new Bluebase.Collections.Items()
-		@batch_collection.on('add remove reset', @updateBatch, this)
+		batch_collection.on('add remove reset', @updateBatch, this)
 
 		collection = @collection
 		PUBNUB.subscribe({
@@ -23,11 +22,12 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 			})
 
 	render: ->
+		me = @
 		purchaseorder = @.options.purchaseorder
-		$(@el).html(@template(purchaseorder: purchaseorder, batch_collection: @batch_collection))
+		$(@el).html(@template(purchaseorder: purchaseorder, batch_collection: batch_collection))
 		@collection.each(@appendItem)
 		items_table = @$('table').dataTable( {
-			"sDom": 'W<"clear">lfrtip',
+			"sDom": 'W<"clear">lfrtipz',
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
 				"sLengthMenu": "_MENU_ records per page"
@@ -35,6 +35,17 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 			"iDisplayLength": 35,
 			"aaSorting": [[ 2, "asc"],[3, "asc"]]
 		});
+
+		@$('table').selectable
+			filter: 'tr',
+			stop: (event, ui) ->
+				selected_items = me.$('.ui-selected')
+				if selected_items.length > 1
+					batch_collection.reset()
+					selected_items.trigger('addToSelection')
+				else
+					batch_collection.reset()
+					selected_items.trigger('loadFunctions')
 
 		@$('.filter-widget').on 'blur', ->
 			col_index = $(this).attr('data-column')
@@ -51,18 +62,18 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 
 	appendItem: (item) =>
 		purchaseorder = @.options.purchaseorder
-		view = new Bluebase.Views.Item({model: item, collection: @collection, purchaseorder: purchaseorder, batch_collection: @batch_collection})
+		view = new Bluebase.Views.Item({model: item, collection: @collection, purchaseorder: purchaseorder, batch_collection: batch_collection})
 		@$('table tbody').append(view.render().el)
 
 	updateBatch: (event) ->
-		@$('.batch-edit').find('span').html(@batch_collection.length)
+		@$('.batch-edit').find('span').html(batch_collection.length)
 
 	batchEdit: (event) ->
-		batch_edit_view = new Bluebase.Views.ItemsBatchEdit(batch_collection: @batch_collection)
+		batch_edit_view = new Bluebase.Views.ItemsBatchEdit(batch_collection: batch_collection)
 		batch_edit_view.render()
 		event.preventDefault()
 
 	clearBatch: (event) ->
-		@batch_collection.reset()
+		batch_collection.reset()
 		@$('.selected').removeClass('icon-darkblue selected').addClass('unselected')
 		event.preventDefault()

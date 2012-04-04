@@ -1,0 +1,386 @@
+Searching 598 files for "container-fluid"
+
+/Users/naderhen/bluebase/app/assets/stylesheets/bootstrap/bootstrap.css:
+  309    clear: both;
+  310  }
+  311: .container-fluid {
+  312    padding-left: 20px;
+  313    padding-right: 20px;
+  ...
+  315    *zoom: 1;
+  316  }
+  317: .container-fluid:before,
+  318: .container-fluid:after {
+  319    display: table;
+  320    content: "";
+  321  }
+  322: .container-fluid:after {
+  323    clear: both;
+  324  }
+
+/Users/naderhen/bluebase/app/views/layouts/application.html.erb:
+   20      <div class="navbar navbar-fixed-top">
+   21        <div class="navbar-inner">
+   22:         <div class="container-fluid">
+   23          	<a class="brand pull-left" href="#">Big Blue Oceans LLC.</a>
+   24            <ul class="nav">
+   ..
+   40      </div>
+   41  
+   42:     <div id="container" class="container-fluid">
+   43        <div id="main" role="main">
+   44            <%- flash.each do |name, msg| -%>
+
+/Users/naderhen/bluebase/public/assets/application.css:
+ 1019    clear: both;
+ 1020  }
+ 1021: .container-fluid {
+ 1022    padding-left: 20px;
+ 1023    padding-right: 20px;
+ ....
+ 1025    *zoom: 1;
+ 1026  }
+ 1027: .container-fluid:before,
+ 1028: .container-fluid:after {
+ 1029    display: table;
+ 1030    content: "";
+ 1031  }
+ 1032: .container-fluid:after {
+ 1033    clear: both;
+ 1034  }
+
+10 matches across 3 files
+
+
+Searching 596 files for "batch_collection"
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/item.js.coffee:
+   14  		@model.on('sync', @savedItem, this)
+   15  		@model.on('pubnub:update', @pubnubUpdate, this)
+   16: 		@batch_collection = @.options.batch_collection
+   17  
+   18  	render: ->
+   ..
+   47  		checkbox = $(@el).find('.icon-check')
+   48  		checkbox.removeClass('unselected').addClass('icon-darkblue selected')
+   49: 		@batch_collection.add(@model)
+   50  
+   51  	removeFromSelection: (event) ->
+   ..
+   53  		checkbox = $(event.currentTarget)
+   54  		checkbox.removeClass('icon-darkblue selected').addClass('unselected')
+   55: 		@batch_collection.remove(@model)
+   56  
+   57  	loadFunctions: (event) ->
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/items_batch_edit.js.coffee:
+    7  
+    8  	initialize: ->
+    9: 		@batch_collection = @.options.batch_collection
+   10  
+   11  	render: ->
+   12  		tag_options = ["Blood", "Lots of Blood", "Little Blood", "Tumor", "1/2 Fish", "Head", "Tail", "Scar", "Worms", "Rainbow", "Smell", "Soft", "Very Soft", "Burn", "2 Color", "Yellow", "Damage", "FDA", "Light", "Sashi", "Sick", "Dark", "Eggs"]
+   13  
+   14: 		$(@el).html(@template(collection: @batch_collection, tag_options: tag_options))
+   15  		$(@el).modal()
+   16  		this
+   ..
+   19  		checked_tags = _.pluck(@$("input.tag_list_check:checked"), 'value')
+   20  
+   21: 		$.each @batch_collection.models, (i, model) ->
+   22  			model.set('tag_list', checked_tags)
+   23  			model.save()
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/items_index.js.coffee:
+   10  		@collection.on('reset', @render, this)
+   11  		@collection.on('add', @appendItem, this)
+   12: 		@batch_collection = new Bluebase.Collections.Items()
+   13: 		@batch_collection.on('add remove reset', @updateBatch, this)
+   14  
+   15  		collection = @collection
+   ..
+   26  		me = @
+   27  		purchaseorder = @.options.purchaseorder
+   28: 		$(@el).html(@template(purchaseorder: purchaseorder, batch_collection: @batch_collection))
+   29  		@collection.each(@appendItem)
+   30  		items_table = @$('table').dataTable( {
+   ..
+   62  	appendItem: (item) =>
+   63  		purchaseorder = @.options.purchaseorder
+   64: 		view = new Bluebase.Views.Item({model: item, collection: @collection, purchaseorder: purchaseorder, batch_collection: @batch_collection})
+   65  		@$('table tbody').append(view.render().el)
+   66  
+   67  	updateBatch: (event) ->
+   68: 		@$('.batch-edit').find('span').html(@batch_collection.length)
+   69  
+   70  	batchEdit: (event) ->
+   71: 		batch_edit_view = new Bluebase.Views.ItemsBatchEdit(batch_collection: @batch_collection)
+   72  		batch_edit_view.render()
+   73  		event.preventDefault()
+   74  
+   75  	clearBatch: (event) ->
+   76: 		@batch_collection.reset()
+   77  		@$('.selected').removeClass('icon-darkblue selected').addClass('unselected')
+   78  		event.preventDefault()
+
+/Users/naderhen/bluebase/app/assets/templates/items/index.jst.eco:
+   39  			</tbody>
+   40  		</table>
+   41: 		<a class="btn batch-edit" href="#"><i class="icon-pencil"></i> Batch Edit (<span><%= @batch_collection.length %></span>)</a>
+   42  		<a class="btn btn-danger clear-batch" href="#"><i class="icon-trash icon-white"></i> Clear Selection</a>
+   43  	</div>
+
+/Users/naderhen/bluebase/app/views/inventory/home.html.erb:
+   10  	var customers = new Bluebase.Collections.Customers;
+   11  	customers.reset(<%= @customers.to_json.html_safe %>);
+   12: 	var batch_collection = new Bluebase.Collections.Items;
+   13  </script>
+   14  
+
+20 matches across 5 files
+
+
+Searching 596 files for "Bluebase.Views.ItemsFunctions"
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/item.js.coffee:
+   57  		$('#inventory-table_wrapper .icon-search').removeClass('icon-darkblue')
+   58  		$(@el).find('.icon-search').addClass('icon-darkblue')
+   59: 		functions_view = new Bluebase.Views.ItemsFunctions(model: @model)
+   60  		$('#right').html(functions_view.render().el).fadeIn()
+   61  		Backbone.ModelBinding.bind(this)
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/items_functions.js.coffee:
+    1: class Bluebase.Views.ItemsFunctions extends Backbone.View
+    2  	template: JST['items/functions']
+    3  
+
+/Users/naderhen/bluebase/app/views/inventory/home.html.erb:
+   11  	customers.reset(<%= @customers.to_json.html_safe %>);
+   12  	var batch_collection = new Bluebase.Collections.Items;
+   13: 	var functions_view = new Bluebase.Views.ItemsFunctions
+   14  </script>
+   15  
+
+3 matches across 3 files
+
+
+Searching 598 files for "PUBNUB.publish"
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/item.js.coffee:
+   34  	savedItem: ->
+   35  		$(@el).find('.icon-ok').fadeIn();
+   36: 		PUBNUB.publish({
+   37                  channel : "items_update",
+   38                  message : {"model": @model, "user": user}
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/purchaseorders/purchaseorder.js.coffee:
+   61  
+   62  	pubnubNotify: (event) ->
+   63: 		PUBNUB.publish({
+   64                  channel : "activities_new",
+   65                  message : {"model": @model, "user": user}
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/purchaseorders/purchaseorder_edit.js.coffee:
+   24  		@model.save
+   25  			success: ->
+   26: 				PUBNUB.publish
+   27  
+   28  	edit: (event) ->
+
+/Users/naderhen/bluebase/app/views/layouts/application.html.erb:
+   71          },
+   72          connect    : function() {
+   73:             PUBNUB.publish({
+   74                  channel : "main",
+   75                  message : "Connected to BlueStats Network"
+
+4 matches across 4 files
+
+
+Searching 598 files for "PUBNUB"
+
+/Users/naderhen/bluebase/Gemfile:
+   31  gem "paper_trail"
+   32  gem "acts-as-taggable-on", "~> 2.2.2"
+   33: gem "pubnub-ruby"
+
+/Users/naderhen/bluebase/Gemfile.lock:
+  150        method_source (~> 0.7.1)
+  151        slop (>= 2.4.4, < 3)
+  152:     pubnub-ruby (0.0.5)
+  153        json
+  154      rabl (0.6.6)
+  ...
+  250    paperclip (~> 3.0)
+  251    pry
+  252:   pubnub-ruby
+  253    rabl
+  254    rails (= 3.2.1)
+
+/Users/naderhen/bluebase/app/assets/javascripts/routers/inventory_router.js.coffee:
+    6  		@purchaseorders = new Bluebase.Collections.Purchaseorders()
+    7  		@purchaseorders.fetch()
+    8: 		PUBNUB.subscribe({
+    9  			channel: 'activities_new',
+   10  			callback: (message) ->
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/item.js.coffee:
+   13  		@model.on('change', @render, this)
+   14  		@model.on('sync', @savedItem, this)
+   15: 		@model.on('pubnub:update', @pubnubUpdate, this)
+   16  
+   17  	render: ->
+   ..
+   21  		this
+   22  
+   23: 	pubnubUpdate: (data) ->
+   24  		@model.set(data.model)
+   25  		comment = $(@el).find('.icon-comment')
+   ..
+   34  	savedItem: ->
+   35  		$(@el).find('.icon-ok').fadeIn();
+   36: 		PUBNUB.publish({
+   37                  channel : "items_update",
+   38                  message : {"model": @model, "user": user}
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/items_index.js.coffee:
+   13  
+   14  		collection = @collection
+   15: 		PUBNUB.subscribe({
+   16  			channel: 'items_update',
+   17  			callback: (data) ->
+   ..
+   19  				updated_model = collection.get(model.id)
+   20  				if typeof(updated_model != 'undefined')
+   21: 					updated_model.trigger('pubnub:update', data)
+   22  			})
+   23  
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/purchaseorders/purchaseorder.js.coffee:
+   10  	initialize: ->
+   11  		@model.on('change', @render, this)
+   12: 		@model.on('sync', @pubnubNotify, this)
+   13  
+   14  	render: ->
+   ..
+   60  		event.preventDefault()
+   61  
+   62: 	pubnubNotify: (event) ->
+   63: 		PUBNUB.publish({
+   64                  channel : "activities_new",
+   65                  message : {"model": @model, "user": user}
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/purchaseorders/purchaseorder_edit.js.coffee:
+   23  		@model.set({graded: true})
+   24  		@model.save()
+   25: 		PUBNUB.publish({
+   26          	channel : "grading_complete",
+   27          	message : {"model": @model, "user": user}
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/purchaseorders/purchaseorders_index.js.coffee:
+    8  	initialize: ->
+    9  		@collection.on('reset', @render, this)
+   10: 		PUBNUB.subscribe({
+   11  			channel: 'activities_new',
+   12  			callback: (data) ->
+   13  				console.log data
+   14  			})
+   15: 		PUBNUB.subscribe({
+   16  			channel: 'grading_complete',
+   17  			callback: (data) ->
+
+/Users/naderhen/bluebase/app/views/layouts/application.html.erb:
+   50        </div>
+   51      </div> <!--! end of #container -->
+   52: <div pub-key="pub-e42fbe0f-2e60-40c8-a292-281c19a0517c" sub-key="sub-d36b0514-7db8-11e1-ba7f-97e084cb3142" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
+   53: <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+   54  <script>(function(){
+   55  
+   56      // LISTEN FOR MESSAGES
+   57:     PUBNUB.subscribe({
+   58          channel    : "main",
+   59          restore    : false,  
+   ..
+   71          },
+   72          connect    : function() {
+   73:             PUBNUB.publish({
+   74                  channel : "main",
+   75                  message : "Connected to BlueStats Network"
+
+/Users/naderhen/bluebase/config/initializers/pubnub.rb:
+    1: pubnub = Pubnub.new(
+    2  		"pub-e42fbe0f-2e60-40c8-a292-281c19a0517c",
+    3  		"sub-d36b0514-7db8-11e1-ba7f-97e084cb3142",
+
+24 matches across 10 files
+
+
+Searching 598 files for "publish"
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/items/item.js.coffee:
+   34  	savedItem: ->
+   35  		$(@el).find('.icon-ok').fadeIn();
+   36: 		PUBNUB.publish({
+   37                  channel : "items_update",
+   38                  message : {"model": @model, "user": user}
+
+/Users/naderhen/bluebase/app/assets/javascripts/views/purchaseorders/purchaseorder_edit.js.coffee:
+   23  		@model.set({graded: true})
+   24  		@model.save()
+   25: 		PUBNUB.publish({
+   26          	channel : "grading_complete",
+   27          	message : {"model": @model, "user": user}
+
+/Users/naderhen/bluebase/app/assets/stylesheets/uploadify.css:
+    6  of this software and associated documentation files (the "Software"), to deal
+    7  in the Software without restriction, including without limitation the rights
+    8: to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    9  copies of the Software, and to permit persons to whom the Software is
+   10  furnished to do so, subject to the following conditions:
+
+/Users/naderhen/bluebase/app/views/layouts/application.html.erb:
+   71      //     },
+   72      //     connect    : function() {
+   73:     //         PUBNUB.publish({
+   74      //             channel : "main",
+   75      //             message : "Connected to BlueStats Network"
+
+/Users/naderhen/bluebase/vendor/plugins/moonshine/LICENSE:
+  144    6. Revised Versions of the GNU Lesser General Public License.
+  145  
+  146:   The Free Software Foundation may publish revised and/or new versions
+  147  of the GNU Lesser General Public License from time to time. Such new
+  148  versions will be similar in spirit to the present version, but may
+  ...
+  153  of the GNU Lesser General Public License "or any later version"
+  154  applies to it, you have the option of following the terms and
+  155: conditions either of that published version or of any later version
+  156: published by the Free Software Foundation. If the Library as you
+  157  received it does not specify a version number of the GNU Lesser
+  158  General Public License, you may choose any version of the GNU Lesser
+  159: General Public License ever published by the Free Software Foundation.
+  160  
+  161    If the Library as you received it specifies that a proxy can decide
+
+/Users/naderhen/bluebase/vendor/plugins/moonshine/generators/moonshine_plugin/templates/LICENSE:
+    6  of this software and associated documentation files (the "Software"), to deal
+    7  in the Software without restriction, including without limitation the rights
+    8: to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    9  copies of the Software, and to permit persons to whom the Software is
+   10  furnished to do so, subject to the following conditions:
+
+/Users/naderhen/bluebase/vendor/plugins/moonshine_god/LICENSE:
+    6  of this software and associated documentation files (the "Software"), to deal
+    7  in the Software without restriction, including without limitation the rights
+    8: to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    9  copies of the Software, and to permit persons to whom the Software is
+   10  furnished to do so, subject to the following conditions:
+
+/Users/naderhen/bluebase/vendor/plugins/moonshine_nodejs/LICENSE:
+    6  of this software and associated documentation files (the "Software"), to deal
+    7  in the Software without restriction, including without limitation the rights
+    8: to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    9  copies of the Software, and to permit persons to whom the Software is
+   10  furnished to do so, subject to the following conditions:
+
+11 matches across 8 files

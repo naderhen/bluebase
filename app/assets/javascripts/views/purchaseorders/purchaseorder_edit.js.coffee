@@ -4,6 +4,7 @@ class Bluebase.Views.PurchaseorderEdit extends Backbone.View
 
 	events: 
 		'click .submit-edit': 'edit'
+		'click #mark-as-graded': 'markAsGraded'
 
 	render: ->
 		me = @
@@ -17,6 +18,15 @@ class Bluebase.Views.PurchaseorderEdit extends Backbone.View
 				$(me.el).modal()
 		})
 		this
+
+	markAsGraded: (event) ->
+		@model.set({graded: true})
+		@model.save()
+		
+		PUBNUB.publish({
+        	channel : "grading_complete",
+        	message : {"po_number": @model.get('po_number'), "user": user}
+    	})
 
 	edit: (event) ->
 		@model.save()

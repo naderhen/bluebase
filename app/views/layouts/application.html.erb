@@ -53,30 +53,30 @@
 <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
 <script>(function(){
 
-    // LISTEN FOR MESSAGES
-    PUBNUB.subscribe({
-        channel    : "main",
-        restore    : false,  
-        callback   : function(message) { // RECEIVED A MESSAGE.
-            console.log(message)
-        },
-        disconnect : function() {
-            console.log(
-                "Connection Lost." +
-                "Will auto-reconnect when Online."
-            )
-        },
-        reconnect  : function() {
-            console.log("And we're Back!")
-        },
-        connect    : function() {
-            PUBNUB.publish({
-                channel : "main",
-                message : "Connected to BlueStats Network"
-            })
+    // // LISTEN FOR MESSAGES
+    // PUBNUB.subscribe({
+    //     channel    : "main",
+    //     restore    : false,  
+    //     callback   : function(message) { // RECEIVED A MESSAGE.
+    //         console.log(message)
+    //     },
+    //     disconnect : function() {
+    //         console.log(
+    //             "Connection Lost." +
+    //             "Will auto-reconnect when Online."
+    //         )
+    //     },
+    //     reconnect  : function() {
+    //         console.log("And we're Back!")
+    //     },
+    //     connect    : function() {
+    //         PUBNUB.publish({
+    //             channel : "main",
+    //             message : "Connected to BlueStats Network"
+    //         })
 
-        }
-    });
+    //     }
+    // });
 
 })();</script>
   </body>

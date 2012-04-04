@@ -7,10 +7,12 @@ class Bluebase.Views.PurchaseordersIndex extends Backbone.View
 	
 	initialize: ->
 		@collection.on('reset', @render, this)
+
 		PUBNUB.subscribe({
-			channel: 'activities_new',
+			channel: 'grading_complete',
 			callback: (data) ->
-				console.log data
+				console.log(data)
+				$.sticky("#{data.user.name} says that PO##{data.po_number} grading is complete!!")
 			})
 
 	render: ->

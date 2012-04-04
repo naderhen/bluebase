@@ -6,25 +6,28 @@
 
 #main { margin: 25px 0 0 0; }
 
-.icon-list, icon-ok {
+.icon-list, .icon-ok, .icon-search {
 	cursor: pointer;
 	}
 
 #batch-modal { width: 750px; }
 
-.highlight,
-.table-striped tbody tr:nth-child(odd).highlight td,
-.table-striped tbody tr:nth-child(odd).highlight th {
-	color: #FFF;
-	background-color: #08C !important;
+table tr { cursor: pointer; }
+
+
+.ui-selecting,
+.ui-selecting td {
+	color: #000;
+	background-color: #F0F8FF !important;
 }
 
-.changed,
-.table-striped tbody tr:nth-child(odd).changed td,
-.table-striped tbody tr:nth-child(odd).changed th {
+.ui-selected,
+.ui-selected td {
 	color: #000;
-	background-color: #C09853 !important;
+	background-color: #87CEFA !important;
 }
+
+
 
 .tag_check_item {
 	width: 95px;

@@ -11,6 +11,7 @@ sort_both.png: sort_both.png
 sort_desc.png: sort_desc.png
 sort_desc_disabled.png: sort_desc_disabled.png
 application.js: application.js
+views/purchaseorders/Find Results: views/purchaseorders/Find Results
 application.css: application.css
 custom-theme/images/ui-bg_flat_0_aaaaaa_40x100.png: custom-theme/images/ui-bg_flat_0_aaaaaa_40x100.png
 custom-theme/images/ui-bg_glass_55_fbf9ee_1x400.png: custom-theme/images/ui-bg_glass_55_fbf9ee_1x400.png

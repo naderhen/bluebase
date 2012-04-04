@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403035232) do
+ActiveRecord::Schema.define(:version => 20120404034202) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120403035232) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "customer_id"
+    t.boolean  "graded"
   end
 
   create_table "permissions", :force => true do |t|
@@ -97,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20120403035232) do
     t.integer  "airport_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "graded"
   end
 
   create_table "shippers", :force => true do |t|

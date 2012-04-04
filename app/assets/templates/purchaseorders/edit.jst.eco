@@ -33,6 +33,11 @@
 			<h4>Notes:</h4>
 			<dl class="dl-horizontal">
 	      	</dl>
+	      	<% if @model.get('graded'): %>
+	      		<btn class="btn">PO Grading Complete!</btn>
+	      	<% else: %>
+		      	<btn id="mark-as-graded" class="btn btn-success">Mark PO As Graded!</btn>
+		    <% end %>
 		</div>
 	</div>
 	<div class="modal-footer">

@@ -9,6 +9,8 @@
 	var items_collection = new Bluebase.Collections.Items;
 	var customers = new Bluebase.Collections.Customers;
 	customers.reset(<%= @customers.to_json.html_safe %>);
+	var batch_collection = new Bluebase.Collections.Items;
+	var previously_selected_model;
 </script>
 
 <div class="page-header">

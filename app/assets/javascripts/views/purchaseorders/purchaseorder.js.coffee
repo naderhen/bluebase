@@ -9,7 +9,6 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 
 	initialize: ->
 		@model.on('change', @render, this)
-		@model.on('sync', @pubnubNotify, this)
 
 	render: ->
 		
@@ -58,9 +57,3 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 		edit_view = new Bluebase.Views.PurchaseorderEdit(model: @model)
 		edit_view.render()
 		event.preventDefault()
-
-	pubnubNotify: (event) ->
-		PUBNUB.publish({
-                channel : "activities_new",
-                message : {"model": @model, "user": user}
-            })

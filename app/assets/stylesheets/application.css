@@ -3,6 +3,10 @@
  *= require_tree .
 */
 
+#container { padding: 40px 10px 10px 10px; }
+
+#main { min-width: 1750px !important;}
+
 .content {
   background-color: #eee;
   padding: 20px;
