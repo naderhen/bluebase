@@ -10,6 +10,8 @@
 	var customers = new Bluebase.Collections.Customers;
 	customers.reset(<%= @customers.to_json.html_safe %>);
 	var batch_collection = new Bluebase.Collections.Items;
+	var views_bucket = [];
+	var all_users = <%= @users.to_json.html_safe %>;
 </script>
 
 <div class="page-header">

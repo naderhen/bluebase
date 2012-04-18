@@ -1,0 +1,5 @@
+<form class="well form-inline">
+	<textarea class="input-medium" placeholder="Comment Text" rows="2" id="comment-text"></textarea>
+	<br />
+	<a href="javascript:void(0)" class="btn btn-primary save-comment">Save comment</button>
+</form>

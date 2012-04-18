@@ -1,7 +1,13 @@
 <td><%= @item.get('box_number') %></td>
 <td><%= @item.get('item_number') %></td>
+<td><%= @item.get('kind') %></td>
+<td><%= @item.get('po_grade') %></td>
 <td><%= @item.get('weight') %></td>
 <td><%= @item.get('code') %></td>
-<td><%= @item.get('cost') %></td>
-<td><%= @item.get('core_grade') %></td>
+<td><%= @item.get('grade') %></td>
 <td><%= @item.get('freshness_grade') %></td>
+<td><%= @item.get('texture') %></td>
+<td><%= @item.get('grade_2') %></td>
+<td><%= @item.get('cost') %></td>
+<td><%= @item.get('grade_notes') %></td>
+<td><%= @item.get('line_detail') %></td>

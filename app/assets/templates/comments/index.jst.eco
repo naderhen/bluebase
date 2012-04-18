@@ -1,0 +1,6 @@
+<h4>Notes:</h4>
+<dl id="purchaseorder-comments" class="dl-horizontal">
+
+</dl>
+<div id="create-comment-container" style="display: none;"></div>
+<a class="btn btn-small create-comment" href="#"><i class="icon-comment"></i> Comment</a>

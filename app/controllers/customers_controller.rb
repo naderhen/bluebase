@@ -5,4 +5,5 @@ class CustomersController < ApplicationController
 		@customers = Customer.all
 		respond_with @customers
 	end
+
 end

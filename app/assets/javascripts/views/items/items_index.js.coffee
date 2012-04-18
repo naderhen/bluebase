@@ -48,6 +48,7 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 					selected_items.trigger('addToSelection')
 				else
 					batch_collection.reset()
+					me.$('table').find('.icon-check.icon-darkblue').removeClass('icon-darkblue')
 					selected_items.trigger('loadFunctions')
 
 		@$('.filter-widget').on 'blur', ->

@@ -1,3 +1,5 @@
+require 'csv'
+require 'open-uri'
 class PurchaseordersController < ApplicationController
 	respond_to :json
 
@@ -24,5 +26,17 @@ class PurchaseordersController < ApplicationController
 
 	def show
 		@purchaseorder = Purchaseorder.find(params[:id])
+	end
+
+	def export
+		@purchaseorder = Purchaseorder.find(params[:id])
+		@items = @purchaseorder.items
+		csv_file = CSV.open("#{Rails.root}/public/system/exports/#{@purchaseorder.id}.csv", "wb") do |csv|
+			csv << ["BOX", "ITEM", "KIND", "PO Grade", "WEIGHT", "CODE", "GO Grade", "GO Freshness", "GO Texture", "GO Grade 2", "COST", "Grade Notes", "Line Detail"]
+			@items.each do |item|
+				csv << [item.box_number, item.item_number, item.species, '', item.weight, item.code, item.core_grade, item.freshness_grade, item.texture_grade, item.shipper_grade, item.cost, item.grade_notes, item.description]
+			end
+		end
+		respond_with @purchaseorder
 	end
 end

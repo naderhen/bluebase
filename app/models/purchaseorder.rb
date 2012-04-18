@@ -6,6 +6,7 @@ class Purchaseorder < ActiveRecord::Base
 
   has_attached_file :document
   acts_as_taggable
+  acts_as_commentable
 
 	def locale
     	if self.warehouse

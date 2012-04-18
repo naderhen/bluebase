@@ -19,16 +19,32 @@ class Bluebase.Views.PurchaseorderUpload extends Backbone.View
 					items = $.parseJSON(data.items_object)
 					uploading_collection = new Bluebase.Collections.Items
 					header_row = items.shift()
+
+					attribute_map = {
+						"BOX": "box_number"
+						"ITEM": "item_number"
+						"KIND": "kind"
+						"PO GRADE": "po_grade"
+						"WEIGHT": "weight"
+						"CODE": "code"
+						"GO GRADE": "core_grade"
+						"GO FRESHNESS": "freshness_grade"
+						"GO TEXTURE": "texture_grade"
+						"COST": "cost"
+						"GRADE NOTES": "grade_notes"
+						"LINE DETAIL": "line_detail"
+					}
+
 					$.each items, (i, item) ->
 						jsonObj = []
 						jsonObj['purchaseorder_id'] = purchaseorder.get('id')
 						$.each item, (i, v) ->
-							jsonObj[header_row[i]] = v
+							jsonObj[attribute_map[header_row[i]]] = v
 
 						model = new Bluebase.Models.Item
 						model.set(jsonObj)
-						uploading_collection.add(model)
-
+						if model.get('box_number') != "DONE"
+							uploading_collection.add(model)
 					upload_table_view = new Bluebase.Views.PurchaseorderUploadTable(collection: uploading_collection)
 					$(self.el).html(upload_table_view.render().el)
 				)

@@ -1,11 +1,12 @@
 class InventoryController < ApplicationController
 	before_filter :authenticate_user!
 	def home
-		@purchaseorders = Purchaseorder.all.to_a
+		@purchaseorders = Purchaseorder.all
 		@items = @purchaseorders.last.items
-		@shippers = Shipper.all.to_a
-		@customers = Customer.all.to_a
-		@warehouses = Warehouse.all.to_a
+		@shippers = Shipper.all
+		@customers = Customer.all
+		@warehouses = Warehouse.all
 		@user = current_user
+		@users = User.all
 	end
 end

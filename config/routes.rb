@@ -1,6 +1,11 @@
 Bluebase::Application.routes.draw do
   scope "api" do
-    resources :purchaseorders, :items, :shippers, :notes, :attachments, :customers
+    resources :items, :shippers, :notes, :attachments, :customers, :comments
+    resources :purchaseorders do
+      member do
+        get 'export'
+      end
+    end
   end
 
   match 'inventory' => 'inventory#home'

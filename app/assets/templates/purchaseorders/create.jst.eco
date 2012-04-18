@@ -28,7 +28,7 @@
 				<% end %>
 			</select>
 		</div>
-		<div id="upload-container" class="span6"></div>
+		<div id="upload-container"></div>
 	</div>
 	<div class="modal-footer">
 		<div class="progress progress-striped progress-danger active">

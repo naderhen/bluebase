@@ -30,9 +30,7 @@
 			<input id="airport" type="text">
 			<label>Broker</label>
 			<input id="broker" type="text">
-			<h4>Notes:</h4>
-			<dl class="dl-horizontal">
-	      	</dl>
+			<div id="comments-container"></div>
 	      	<% if @model.get('graded'): %>
 	      		<btn class="btn">PO Grading Complete!</btn>
 	      	<% else: %>

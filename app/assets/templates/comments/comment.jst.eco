@@ -1,0 +1,2 @@
+<dt><%= @comment.get('user_name') %></dt>
+<dd><%= @comment.get('body') %></dd>

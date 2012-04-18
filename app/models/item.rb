@@ -3,7 +3,8 @@ class Item < ActiveRecord::Base
 	belongs_to :customer
 	has_paper_trail
 	acts_as_taggable
-
+  	acts_as_commentable
+  	
 	after_create :parse_code
 
 	def parse_code

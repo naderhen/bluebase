@@ -11,7 +11,6 @@ class Bluebase.Views.PurchaseordersIndex extends Backbone.View
 		PUBNUB.subscribe({
 			channel: 'grading_complete',
 			callback: (data) ->
-				console.log(data)
 				$.sticky("#{data.user.name} says that PO##{data.po_number} grading is complete!!")
 			})
 
@@ -23,7 +22,8 @@ class Bluebase.Views.PurchaseordersIndex extends Backbone.View
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
 				"sLengthMenu": "_MENU_ records per page"
-			}
+			},
+			"aaSorting": [[1, "desc"]]
 		});
 
 		this

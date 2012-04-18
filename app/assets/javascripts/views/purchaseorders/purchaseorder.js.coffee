@@ -6,6 +6,7 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 		'click .icon-list': 'addItems'
 		'click .icon-ok': 'removeItems'
 		'click .edit-purchaseorder': 'editPurchaseorder'
+		'click .download-csv': 'downloadPurchaseorder'
 
 	initialize: ->
 		@model.on('change', @render, this)
@@ -57,3 +58,9 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 		edit_view = new Bluebase.Views.PurchaseorderEdit(model: @model)
 		edit_view.render()
 		event.preventDefault()
+
+	downloadPurchaseorder: (event) ->
+		model = @model
+		$.ajax "api/purchaseorders/#{model.get('id')}/export",
+			success: (data) ->
+				window.location.href = "system/exports/#{model.get('id')}.csv"

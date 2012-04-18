@@ -47,8 +47,19 @@ class Bluebase.Views.ItemsFunctions extends Backbone.View
 					me.$('#customer_id').val(ui.item.value)
 					me.model.set({customer_id: ui.item.value})
 			})
+
+		comments_collection = new Bluebase.Collections.Comments
+		if (@model.get('root_comments').length > 0)
+			comments_collection.reset(@model.get('root_comments'))
+		comments_view = new Bluebase.Views.CommentsIndex({collection: comments_collection, parent_model: @model, parent_type: "Item"} )
+		$(me.el).find('#comments-container').html(comments_view.render().el)
 		Backbone.ModelBinding.bind(this)
 		this
+
+	close: ->
+		@model.fetch()
+		# this.remove()
+		this.unbind()
 
 	save: (event) ->
 		checked_tags = _.pluck(@$("input.tag_list_check:checked"), 'value')

@@ -11,6 +11,7 @@
 				<th>Shipper</th>
 				<th>Locale</th>
 				<th>Origin</th>
+				<th>Graded</th>
 			</tr>
 		</thead>
 		<tbody>

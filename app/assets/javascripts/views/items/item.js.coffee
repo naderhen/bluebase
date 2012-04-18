@@ -54,6 +54,11 @@ class Bluebase.Views.Item extends Backbone.View
 	loadFunctions: (event) ->
 		$('#inventory-table_wrapper .icon-search').removeClass('icon-darkblue')
 		$(@el).find('.icon-check').addClass('icon-darkblue')
+
 		functions_view = new Bluebase.Views.ItemsFunctions(model: @model)
+		if views_bucket.length
+			existing_view = views_bucket[views_bucket.length - 1]
+			existing_view.close()
+		views_bucket.push(functions_view)
 		$('#right').html(functions_view.render().el).fadeIn()
 		Backbone.ModelBinding.bind(this)

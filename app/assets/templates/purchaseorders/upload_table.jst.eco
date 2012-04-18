@@ -3,15 +3,25 @@
 		<tr>
 			<th>BOX</th>
 			<th>ITEM</th>
+			<th>KIND</th>
+			<th>PO GRADE</th>
 			<th>WEIGHT</th>
 			<th>CODE</th>
-			<th>COST</th>
-			<th>CORE GRADE</th>
+			<th>GRADE</th>
 			<th>FRESHNESS</th>
+			<th>TEXTURE</th>
+			<th>GRADE 2</th>
+			<th>COST</th>
+			<th>GRADE NOTES</th>
+			<th>LINE DETAIL</th>
 		</tr>
 	</thead>
 	<tbody>
 	</tbody>
 </table>
+
+<div id="upload-details">
+	<p id="total-pounds"></p>
+</div>
 
 <button id="confirm-inventory" class="btn btn-success">Confirm Inventory</button>

@@ -12,7 +12,13 @@ class Bluebase.Views.PurchaseorderUploadTable extends Backbone.View
 
 	render: ->
 		$(@el).html(@template(collection: @collection))
+		$('.modal').animate({ width: '1000px', marginLeft: '-500px' })
 		@collection.each(@appendDraftItem)
+
+		total_pounds = 0
+		_.reduce @collection.models, (i, model) ->
+			total_pounds += parseFloat(model.get('weight'))
+		$(@el).find('#total-pounds').html(total_pounds)
 		this
 
 	appendDraftItem: (item) =>

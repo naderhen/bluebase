@@ -16,6 +16,12 @@ class Bluebase.Views.PurchaseorderEdit extends Backbone.View
 				$(me.el).html(me.template(model: model, shippers_collection: shippers))
 				Backbone.ModelBinding.bind(self)
 				$(me.el).modal()
+				
+				comments_collection = new Bluebase.Collections.Comments
+				if (model.get('root_comments').length > 0)
+					comments_collection.reset(model.get('root_comments'))
+				comments_view = new Bluebase.Views.CommentsIndex({collection: comments_collection, parent_model: model, parent_type: "Purchaseorder"} )
+				$(me.el).find('#comments-container').html(comments_view.render().el)
 		})
 		this
 
