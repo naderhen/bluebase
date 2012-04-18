@@ -31835,7 +31835,9 @@ $.fn.dataTableExt.afnFiltering.push(
       model = this.model;
       return $.ajax("api/purchaseorders/" + (model.get('id')) + "/export", {
         success: function(data) {
-          return window.location.href = "system/exports/" + (model.get('id')) + ".csv";
+          var div;
+          div = $("<div class='modal'><div class='modal-header'><h3>Download CSV</h3></div><div class='modal-body'><a href='/system/exports/" + (model.get('po_number')) + ".csv' class='btn btn-success'>Download CSV!</a></div></div>");
+          return div.modal();
         }
       });
     };

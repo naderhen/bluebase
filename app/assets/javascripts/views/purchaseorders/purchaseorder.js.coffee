@@ -63,4 +63,5 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 		model = @model
 		$.ajax "api/purchaseorders/#{model.get('id')}/export",
 			success: (data) ->
-				window.location.href = "system/exports/#{model.get('id')}.csv"
+				div = $("<div class='modal'><div class='modal-header'><h3>Download CSV</h3></div><div class='modal-body'><a href='/system/exports/#{model.get('po_number')}.csv' class='btn btn-success'>Download CSV!</a></div></div>")
+				div.modal()
