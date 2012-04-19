@@ -30858,7 +30858,7 @@ $.fn.dataTableExt.afnFiltering.push(
     (function() {
       (function() {
       
-        __out.push('<table class="table table-striped">\n\t<thead>\n\t\t<tr>\n\t\t\t<th>BOX</th>\n\t\t\t<th>ITEM</th>\n\t\t\t<th>KIND</th>\n\t\t\t<th>PO GRADE</th>\n\t\t\t<th>WEIGHT</th>\n\t\t\t<th>CODE</th>\n\t\t\t<th>GRADE</th>\n\t\t\t<th>FRESHNESS</th>\n\t\t\t<th>TEXTURE</th>\n\t\t\t<th>GRADE 2</th>\n\t\t\t<th>COST</th>\n\t\t\t<th>GRADE NOTES</th>\n\t\t\t<th>LINE DETAIL</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t</tbody>\n</table>\n\n<div id="upload-details">\n\t<p id="total-pounds"></p>\n</div>\n\n<button id="confirm-inventory" class="btn btn-success">Confirm Inventory</button>\n');
+        __out.push('<table class="table table-striped">\n\t<thead>\n\t\t<tr>\n\t\t\t<th>BOX</th>\n\t\t\t<th>ITEM</th>\n\t\t\t<th>KIND</th>\n\t\t\t<th>PO GRADE</th>\n\t\t\t<th>WEIGHT</th>\n\t\t\t<th>CODE</th>\n\t\t\t<th>GRADE</th>\n\t\t\t<th>FRESHNESS</th>\n\t\t\t<th>TEXTURE</th>\n\t\t\t<th>GRADE 2</th>\n\t\t\t<th>COST</th>\n\t\t\t<th>GRADE NOTES</th>\n\t\t\t<th>LINE DETAIL</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t</tbody>\n</table>\n\n<div id="upload-details">\n\t<dl>\n\t\t<dt>Total Pounds:</dt>\n\t\t<dd id="total-pounds"></p>\n\t</dl>\n</div>\n\n<button id="confirm-inventory" class="btn btn-success">Confirm Inventory</button>\n');
       
       }).call(this);
       

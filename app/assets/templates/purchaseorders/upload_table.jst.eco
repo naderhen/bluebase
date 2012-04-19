@@ -21,7 +21,10 @@
 </table>
 
 <div id="upload-details">
-	<p id="total-pounds"></p>
+	<dl>
+		<dt>Total Pounds:</dt>
+		<dd id="total-pounds"></p>
+	</dl>
 </div>
 
 <button id="confirm-inventory" class="btn btn-success">Confirm Inventory</button>
