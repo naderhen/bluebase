@@ -17,6 +17,12 @@ puts 'New user created: ' << user.name
 user = User.create! :name => 'Big Blue Staff', :email => 'bigblue@bigblue.com', :password => 'bigblue', :password_confirmation => 'bigblue', :role => "Staff"
 puts 'New user created: ' << user.name
 
+user = User.create! :name => 'Meri Intonato', :email => 'bigblueoceanllc@gmail.com', :password => 'bigblue', :password_confirmation => 'bigblue', :role => "Admin"
+puts 'New user created: ' << user.name
+
+user = User.create! :name => 'Tom Ferro', :email => 'tommytuna@gmail.com', :password => 'bigblue', :password_confirmation => 'bigblue', :role => "Admin"
+puts 'New user created: ' << user.name
+
 Warehouse.delete_all
 ["MIT", "PAN", "NOR", "TDW", "BFT", "ACA", "CUS", "ARA", "FDA", "LAW", "NFFM", "PEN", "PRY", "SEA", "FTW"].each do |warehouse|
 	Warehouse.create! short_name: warehouse
