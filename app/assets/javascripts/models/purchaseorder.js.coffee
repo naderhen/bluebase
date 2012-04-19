@@ -10,12 +10,6 @@ class Bluebase.Models.Purchaseorder extends Backbone.Model
 		}
 	}
 
-	export: ->
-		(@sync || Backbone.sync).call @, 'export', @,
-			url: "#{@url()}/export"
-			success: (data) =>
-				console.log data
-
 	url: ->
 		base = 'api/purchaseorders'
 		if this.isNew()

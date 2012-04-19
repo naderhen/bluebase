@@ -30990,16 +30990,6 @@ $.fn.dataTableExt.afnFiltering.push(
       }
     };
 
-    Purchaseorder.prototype["export"] = function() {
-      var _this = this;
-      return (this.sync || Backbone.sync).call(this, 'export', this, {
-        url: "" + (this.url()) + "/export",
-        success: function(data) {
-          return console.log(data);
-        }
-      });
-    };
-
     Purchaseorder.prototype.url = function() {
       var base;
       base = 'api/purchaseorders';
@@ -31784,11 +31774,16 @@ $.fn.dataTableExt.afnFiltering.push(
       po = new Bluebase.Models.Purchaseorder(this.model);
       $('#center, #right').fadeOut();
       object.removeClass('icon-list').addClass('icon-refresh');
+      batch_collection.reset();
       return po.fetch({
         success: function() {
           var items_view, new_items;
           new_items = po.get('items');
-          items_collection.add(new_items);
+          _.each(new_items, function(item) {
+            var item_model;
+            item_model = new Bluebase.Models.Item(item);
+            return items_collection.add(item_model);
+          });
           items_view = new Bluebase.Views.ItemsIndex({
             purchaseorder: po,
             collection: items_collection

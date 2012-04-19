@@ -26,13 +26,15 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 		po = new Bluebase.Models.Purchaseorder(@model)
 		$('#center, #right').fadeOut()
 		object.removeClass('icon-list').addClass('icon-refresh')
+		batch_collection.reset()
 		po.fetch({
 			success: ->
 				new_items = po.get('items')
-				items_collection.add(new_items)
+				_.each new_items, (item) ->
+					item_model = new Bluebase.Models.Item(item)
+					items_collection.add(item_model)
 				items_view = new Bluebase.Views.ItemsIndex({purchaseorder: po, collection: items_collection})
 				$('#center').html(items_view.render().el).fadeIn()
-
 				object.removeClass('icon-refresh').addClass('icon-ok icon-darkblue')
 			})
 
