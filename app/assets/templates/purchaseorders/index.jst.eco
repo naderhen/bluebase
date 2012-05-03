@@ -18,7 +18,5 @@
 		</tbody>
 	</table>
 </div>
-<div class="well">
-	<h4>Filter Po's</h4>
-	<a id="create_purchaseorder" class="btn" href="#"><i class="icon-plus"></i> Create New Purchase Order</a>
-</div>
+
+<a id="create_purchaseorder" class="btn" href="#"><i class="icon-plus"></i> Create New Purchase Order</a>

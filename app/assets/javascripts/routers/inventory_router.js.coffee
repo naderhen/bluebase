@@ -3,8 +3,7 @@ class Bluebase.Routers.Inventory extends Backbone.Router
 		'': 'index'
 
 	initialize: ->
-		@purchaseorders = new Bluebase.Collections.Purchaseorders()
-		@purchaseorders.fetch()
+		purchaseorders_collection.fetch()
 		PUBNUB.subscribe({
 			channel: 'activities_new',
 			callback: (message) ->
@@ -12,5 +11,5 @@ class Bluebase.Routers.Inventory extends Backbone.Router
 			})
 
 	index: ->
-		purchase_orders_view = new Bluebase.Views.PurchaseordersIndex({collection: @purchaseorders})
+		purchase_orders_view = new Bluebase.Views.PurchaseordersIndex({collection: purchaseorders_collection})
 		$('#left').html(purchase_orders_view.render().el)

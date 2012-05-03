@@ -30673,7 +30673,74 @@ $.fn.dataTableExt.afnFiltering.push(
     (function() {
       (function() {
       
-        __out.push('<div class="well">\n\t<h4>Purchase Orders</h4>\n</div>\n<div>\n\t<table id="example" class="table table-striped table-bordered table-condensed">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th>Active</th>\n\t\t\t\t<th>PO #</th>\n\t\t\t\t<th>Date</th>\n\t\t\t\t<th>Shipper</th>\n\t\t\t\t<th>Locale</th>\n\t\t\t\t<th>Origin</th>\n\t\t\t\t<th>Graded</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody>\n\t\t</tbody>\n\t</table>\n</div>\n<div class="well">\n\t<h4>Filter Po\'s</h4>\n\t<a id="create_purchaseorder" class="btn" href="#"><i class="icon-plus"></i> Create New Purchase Order</a>\n</div>\n');
+        __out.push('<div class="well">\n\t<h4>Purchase Orders</h4>\n</div>\n<div>\n\t<table id="example" class="table table-striped table-bordered table-condensed">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th>Active</th>\n\t\t\t\t<th>PO #</th>\n\t\t\t\t<th>Date</th>\n\t\t\t\t<th>Shipper</th>\n\t\t\t\t<th>Locale</th>\n\t\t\t\t<th>Origin</th>\n\t\t\t\t<th>Graded</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody>\n\t\t</tbody>\n\t</table>\n</div>\n\n<a id="create_purchaseorder" class="btn" href="#"><i class="icon-plus"></i> Create New Purchase Order</a>\n');
+      
+      }).call(this);
+      
+    }).call(__obj);
+    __obj.safe = __objSafe, __obj.escape = __escape;
+    return __out.join('');
+  };
+}).call(this);
+(function() {
+  this.JST || (this.JST = {});
+  this.JST["purchaseorders/info"] = function(__obj) {
+    if (!__obj) __obj = {};
+    var __out = [], __capture = function(callback) {
+      var out = __out, result;
+      __out = [];
+      callback.call(this);
+      result = __out.join('');
+      __out = out;
+      return __safe(result);
+    }, __sanitize = function(value) {
+      if (value && value.ecoSafe) {
+        return value;
+      } else if (typeof value !== 'undefined' && value != null) {
+        return __escape(value);
+      } else {
+        return '';
+      }
+    }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+    __safe = __obj.safe = function(value) {
+      if (value && value.ecoSafe) {
+        return value;
+      } else {
+        if (!(typeof value !== 'undefined' && value != null)) value = '';
+        var result = new String(value);
+        result.ecoSafe = true;
+        return result;
+      }
+    };
+    if (!__escape) {
+      __escape = __obj.escape = function(value) {
+        return ('' + value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      };
+    }
+    (function() {
+      (function() {
+      
+        __out.push('<h2>PO #');
+      
+        __out.push(__sanitize(this.model.get('po_number')));
+      
+        __out.push(' Info</h2>\n<ul class="nav nav-tabs">\n\t<li class="active"><a href="#po-info" data-toggle="tab">Info</a></li>\n\t<li><a href="#po-comments" data-toggle="tab">Comments(<span id="comments-count"></span>)</a></li>\n</ul>\n<div class="tab-content">\n\t<div class="tab-pane active" id="po-info">\n\t\t<dl>\n\t\t\t<dt>PO Date:</dt>\n\t\t\t<dd>');
+      
+        __out.push(__sanitize(this.model.get('po_date')));
+      
+        __out.push('</dd>\n\t\t\t<dt>Shipper:</dt>\n\t\t\t<dd>');
+      
+        __out.push(__sanitize(this.model.get('shipper').name));
+      
+        __out.push('</dd>\n\t\t\t<dt>Locale</dt>\n\t\t\t<dd>');
+      
+        __out.push(__sanitize(this.model.get('locale')));
+      
+        __out.push('</dd>\n\t\t</dl>\n\t</div>\n\t<div class="tab-pane" id="po-comments">\n\t\t<div id="comments-container"></div>\n\t</div>\n</div>\n');
       
       }).call(this);
       
@@ -31747,6 +31814,7 @@ $.fn.dataTableExt.afnFiltering.push(
     Purchaseorder.prototype.tagName = 'tr';
 
     Purchaseorder.prototype.events = {
+      'click': 'showInfo',
       'click .icon-list': 'addItems',
       'click .icon-ok': 'removeItems',
       'click .edit-purchaseorder': 'editPurchaseorder',
@@ -31764,6 +31832,18 @@ $.fn.dataTableExt.afnFiltering.push(
       $(this.el).html(this.template({
         purchaseorder: this.model
       }));
+      return this;
+    };
+
+    Purchaseorder.prototype.showInfo = function(e) {
+      var purchaseorder_info_view;
+      $(e.currentTarget).siblings('.selected').removeClass('selected');
+      $(e.currentTarget).addClass('selected');
+      purchaseorder_info_view = new Bluebase.Views.PurchaseorderInfo({
+        model: this.model
+      });
+      $('#info-section').html(purchaseorder_info_view.render().el).fadeIn();
+      e.preventDefault();
       return this;
     };
 
@@ -31917,6 +31997,48 @@ $.fn.dataTableExt.afnFiltering.push(
   var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
+  Bluebase.Views.PurchaseorderInfo = (function(_super) {
+
+    __extends(PurchaseorderInfo, _super);
+
+    function PurchaseorderInfo() {
+      PurchaseorderInfo.__super__.constructor.apply(this, arguments);
+    }
+
+    PurchaseorderInfo.prototype.template = JST['purchaseorders/info'];
+
+    PurchaseorderInfo.prototype.render = function() {
+      var comments_collection, comments_view, me, model, self;
+      me = this;
+      self = this;
+      model = this.model;
+      $(me.el).html(me.template({
+        model: model
+      }));
+      Backbone.ModelBinding.bind(self);
+      comments_collection = new Bluebase.Collections.Comments;
+      if (model.get('root_comments').length > 0) {
+        comments_collection.reset(model.get('root_comments'));
+      }
+      $(me.el).find('#comments-count').html(comments_collection.length);
+      comments_view = new Bluebase.Views.CommentsIndex({
+        collection: comments_collection,
+        parent_model: model,
+        parent_type: "Purchaseorder"
+      });
+      $(me.el).find('#comments-container').html(comments_view.render().el);
+      return this;
+    };
+
+    return PurchaseorderInfo;
+
+  })(Backbone.View);
+
+}).call(this);
+(function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
   Bluebase.Views.PurchaseorderUpload = (function(_super) {
 
     __extends(PurchaseorderUpload, _super);
@@ -31975,6 +32097,7 @@ $.fn.dataTableExt.afnFiltering.push(
               }
             });
             upload_table_view = new Bluebase.Views.PurchaseorderUploadTable({
+              model: purchaseorder,
               collection: uploading_collection
             });
             return $(self.el).html(upload_table_view.render().el);
@@ -32049,6 +32172,7 @@ $.fn.dataTableExt.afnFiltering.push(
         return model.save();
       });
       $("#progress-instructions").html("Inventory successfully added to Purchaseorder! You're Done!");
+      console.log(purchaseorders_collection.add(this.model));
       $("#progress-bar").parents('.progress').addClass('progress-success');
       $("#progress-bar").animate({
         width: '100%'
@@ -32149,6 +32273,7 @@ $.fn.dataTableExt.afnFiltering.push(
 
     PurchaseordersIndex.prototype.initialize = function() {
       this.collection.on('reset', this.render, this);
+      this.collection.on('change', this.render, this);
       return PUBNUB.subscribe({
         channel: 'grading_complete',
         callback: function(data) {
@@ -32159,6 +32284,7 @@ $.fn.dataTableExt.afnFiltering.push(
 
     PurchaseordersIndex.prototype.render = function() {
       var purchaseorders_table;
+      console.log('rendering');
       $(this.el).html(this.template());
       this.collection.each(this.appendPurchaseorder);
       purchaseorders_table = this.$('table').dataTable({
@@ -32212,8 +32338,7 @@ $.fn.dataTableExt.afnFiltering.push(
     };
 
     Inventory.prototype.initialize = function() {
-      this.purchaseorders = new Bluebase.Collections.Purchaseorders();
-      this.purchaseorders.fetch();
+      purchaseorders_collection.fetch();
       return PUBNUB.subscribe({
         channel: 'activities_new',
         callback: function(message) {
@@ -32225,7 +32350,7 @@ $.fn.dataTableExt.afnFiltering.push(
     Inventory.prototype.index = function() {
       var purchase_orders_view;
       purchase_orders_view = new Bluebase.Views.PurchaseordersIndex({
-        collection: this.purchaseorders
+        collection: purchaseorders_collection
       });
       return $('#left').html(purchase_orders_view.render().el);
     };

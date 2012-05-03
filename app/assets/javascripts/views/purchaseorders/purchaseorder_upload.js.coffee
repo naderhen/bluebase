@@ -45,7 +45,7 @@ class Bluebase.Views.PurchaseorderUpload extends Backbone.View
 						model.set(jsonObj)
 						if model.get('box_number') != "DONE"
 							uploading_collection.add(model)
-					upload_table_view = new Bluebase.Views.PurchaseorderUploadTable(collection: uploading_collection)
+					upload_table_view = new Bluebase.Views.PurchaseorderUploadTable(model: purchaseorder, collection: uploading_collection)
 					$(self.el).html(upload_table_view.render().el)
 				)
 			return false

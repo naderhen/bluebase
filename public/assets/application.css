@@ -5568,12 +5568,16 @@ table tr { cursor: pointer; }
 	background-color: #87CEFA !important;
 }
 
-
-
 .tag_check_item {
 	width: 95px;
 	float: left;
 }
+
+#left tr.selected td { background-color: lightSkyBlue; }
+
+#left .btn { margin: 15px 0; }
+
+.modal-body .btn { margin: 20px 0; }
 @charset 'UTF-8';
 /*
  * jQuery File Upload UI Plugin CSS 6.3

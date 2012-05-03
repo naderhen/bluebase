@@ -1,0 +1,20 @@
+<h2>PO #<%= @model.get('po_number') %> Info</h2>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#po-info" data-toggle="tab">Info</a></li>
+	<li><a href="#po-comments" data-toggle="tab">Comments(<span id="comments-count"></span>)</a></li>
+</ul>
+<div class="tab-content">
+	<div class="tab-pane active" id="po-info">
+		<dl>
+			<dt>PO Date:</dt>
+			<dd><%= @model.get('po_date') %></dd>
+			<dt>Shipper:</dt>
+			<dd><%= @model.get('shipper').name %></dd>
+			<dt>Locale</dt>
+			<dd><%= @model.get('locale') %></dd>
+		</dl>
+	</div>
+	<div class="tab-pane" id="po-comments">
+		<div id="comments-container"></div>
+	</div>
+</div>

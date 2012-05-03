@@ -2,7 +2,8 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 	template: JST['purchaseorders/purchaseorder']
 	tagName: 'tr'
 
-	events: 
+	events:
+		'click': 'showInfo'
 		'click .icon-list': 'addItems'
 		'click .icon-ok': 'removeItems'
 		'click .edit-purchaseorder': 'editPurchaseorder'
@@ -12,11 +13,18 @@ class Bluebase.Views.Purchaseorder extends Backbone.View
 		@model.on('change', @render, this)
 
 	render: ->
-		
 		if user.get('role') != "Admin"
 		  @model.get('shipper').name = "Unavailable"
 
 		$(@el).html(@template(purchaseorder: @model))
+		this
+
+	showInfo: (e) ->
+		$(e.currentTarget).siblings('.selected').removeClass('selected')
+		$(e.currentTarget).addClass('selected')
+		purchaseorder_info_view = new Bluebase.Views.PurchaseorderInfo(model: @model)
+		$('#info-section').html(purchaseorder_info_view.render().el).fadeIn()
+		e.preventDefault()
 		this
 
 	addItems: (event)->

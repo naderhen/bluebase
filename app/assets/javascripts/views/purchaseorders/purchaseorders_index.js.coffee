@@ -7,7 +7,7 @@ class Bluebase.Views.PurchaseordersIndex extends Backbone.View
 	
 	initialize: ->
 		@collection.on('reset', @render, this)
-
+		@collection.on('change', @render, this)
 		PUBNUB.subscribe({
 			channel: 'grading_complete',
 			callback: (data) ->
@@ -15,6 +15,7 @@ class Bluebase.Views.PurchaseordersIndex extends Backbone.View
 			})
 
 	render: ->
+		console.log('rendering')
 		$(@el).html(@template())
 		@collection.each(@appendPurchaseorder)
 		purchaseorders_table = @$('table').dataTable( {

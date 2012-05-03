@@ -6,6 +6,7 @@
 	shippers.reset(<%= @shippers.to_json.html_safe %>);
 	var warehouses = new Bluebase.Collections.Warehouses;
 	warehouses.reset(<%= @warehouses.to_json.html_safe %>);
+	var purchaseorders_collection = new Bluebase.Collections.Purchaseorders();
 	var items_collection = new Bluebase.Collections.Items;
 	var customers = new Bluebase.Collections.Customers;
 	customers.reset(<%= @customers.to_json.html_safe %>);
@@ -18,8 +19,10 @@
 	<h1>Inventory View</h1>
 </div>
 <div class="row">
-	<div id="left" class="span5"></div>
-
+	<div id="left-side" class="span5">
+		<div id="left"></div>
+		<div id="info-section"></div>
+	</div>
 	<div id="center" class="span12"></div>
 
 	<div id="right" class="span5"></div>
