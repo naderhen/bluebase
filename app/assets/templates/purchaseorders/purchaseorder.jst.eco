@@ -5,7 +5,7 @@
 </td>
 <td class="edit_purchaseorder"><%= @purchaseorder.get('po_number') %></td>
 <td><%= @purchaseorder.get('po_date') %></td>
-<td><%= @purchaseorder.get('shipper').name %></td>
+<td><%= @purchaseorder.get('shipper').name if @purchaseorder.has('shipper') %></td>
 <td><%= @purchaseorder.get('locale') %></td>
 <td><%= @purchaseorder.get('origin') %></td>
 <% if(@purchaseorder.get('graded')): %>

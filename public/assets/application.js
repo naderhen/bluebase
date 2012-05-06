@@ -27380,6 +27380,70 @@ if (typeof define === 'function' && define.amd) {
 	 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
 	 */
 }(jQuery, window, document, undefined));
+$.fn.dataTableExt.afnFiltering.push(
+	function( oSettings, aData, iDataIndex ) {
+		var table = $(oSettings.nTable);
+		if (oSettings.sTableId == "inventory-table") {
+			var conditions = [];
+			if (table.hasClass('filter-weight')) {
+				var weightRange = $("#weight-range").data('slider'),
+					min = weightRange.options.values[0],
+					max = weightRange.options.values[1],
+					row_weight = aData[4];
+
+				conditions.push(row_weight > min && row_weight < max);
+			}
+
+			if (table.hasClass('core-grade-filter')) {
+				var checkedArray = _.pluck($('.core-grade-filter:checked'), 'value'),
+					row_grade = aData[6];
+
+				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				} else {
+					conditions.push(true);
+				}
+			};
+
+			if (table.hasClass('freshness-grade-filter')) {
+				var checkedArray = _.pluck($('.freshness-grade-filter:checked'), 'value'),
+					row_grade = aData[7];
+
+				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				} else {
+					conditions.push(true);
+				}
+			};
+
+			if (table.hasClass('texture-grade-filter')) {
+				var checkedArray = _.pluck($('.texture-grade-filter:checked'), 'value'),
+					row_grade = aData[8];
+
+				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				} else {
+					conditions.push(true);
+				}
+			};
+
+			if (table.hasClass('tail-grade-filter')) {
+				var checkedArray = _.pluck($('.tail-grade-filter:checked'), 'value'),
+					row_grade = aData[9];
+
+				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				} else {
+					conditions.push(true);
+				}
+			};
+
+			return _.all(conditions, _.identity);
+		} else {
+			return true;
+		}
+	}
+);
 ;(function() {
     
     var Form = Backbone.Form,
@@ -30362,12 +30426,69 @@ $.fn.dataTableExt.afnFiltering.push(
     }
     (function() {
       (function() {
+        var core_grade, freshness_grade, tail_grade, texture_grade, _i, _j, _k, _l, _len, _len2, _len3, _len4, _ref, _ref2, _ref3, _ref4;
       
         __out.push('<div class="well">\n\t<h4>Inventory for ');
       
         __out.push(__sanitize(this.purchaseorder.get('po_number')));
       
-        __out.push('</h4>\n</div>\n<div class="row">\n\t<div class="well span3">\n\t\t<form id="items-filters" class="form-horizontal">\n\t\t\t<label>PO #</label>\n\t\t\t<input class="filter-widget span2" type="text" data-column="1">\n\t\t\t<label>Box #</label>\n\t\t\t<input class="filter-widget span2" type="text" data-column="2">\n\t\t\t<label>Item #</label>\n\t\t\t<input class="filter-widget span2" type="text" data-column="3">\n\t\t\t<label>Weight</label>\n\t\t\t<input class="filter-widget span2" type="text" data-column="4">\n\t\t\t<label>Species</label>\n\t\t\t<input class="filter-widget span2" type="text" data-column="5">\n\t\t\t<label>Grade</label>\n\t\t\t<input class="filter-widget span2" type="text" data-column="6">\n\t\t</form>\n\t</div>\n\t<div class="span8">\n\t\t<table id="inventory-table" class="table table-striped table-bordered table-condensed">\n\t\t\t<thead>\n\t\t\t\t<tr>\n\t\t\t\t\t<th><i class="icon-check"></i></th>\n\t\t\t\t\t<th>PO #</th>\n\t\t\t\t\t<th>Box</th>\n\t\t\t\t\t<th>Item</th>\n\t\t\t\t\t<th>Weight</th>\n\t\t\t\t\t<th>Species</th>\n\t\t\t\t\t<th>Grade</th>\n\t\t\t\t\t<th>Freshness</th>\n\t\t\t\t\t<th>Texture</th>\n\t\t\t\t\t<th>Tail</th>\n\t\t\t\t\t<th>Actions</th>\n\t\t\t\t</tr>\n\t\t\t</thead>\n\t\t\t<tbody>\n\t\t\t</tbody>\n\t\t</table>\n\t\t<a class="btn batch-edit" href="#"><i class="icon-pencil"></i> Batch Edit (<span>');
+        __out.push('</h4>\n</div>\n<div class="row">\n\t<div class="well span3">\n\t\t<form id="items-filters" class="form-horizontal cfx">\n\t\t\t<h3>Weight: <span id="weight-results">ANY</span> lbs</h3>\n\t\t\t<div id="weight-range"></div>\n\t\t\t<div class="filter-section cfx">\n\t\t\t\t<h3>Core Grade</h3>\n\t\t\t\t');
+      
+        _ref = this.core_grade_choices;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          core_grade = _ref[_i];
+          __out.push('\n\t\t\t\t\t<label class="checkbox grade-filter-checkbox">\n\t\t\t\t\t\t<input type="checkbox" id="core-grade-filter-');
+          __out.push(__sanitize(core_grade));
+          __out.push('" class="filter-checkbox core-grade-filter" data-filter-type="core-grade-filter" value="');
+          __out.push(__sanitize(core_grade));
+          __out.push('">\n\t\t\t\t\t\t');
+          __out.push(__sanitize(core_grade));
+          __out.push('\n\t\t\t\t\t</label>\n\t\t\t\t');
+        }
+      
+        __out.push('\n\t\t\t</div>\n\t\t\t<br />\n\t\t\t<div class="filter-section cfx">\n\t\t\t\t<h3>Freshness</h3>\n\t\t\t\t');
+      
+        _ref2 = this.freshness_grade_choices;
+        for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+          freshness_grade = _ref2[_j];
+          __out.push('\n\t\t\t\t\t<label class="checkbox grade-filter-checkbox">\n\t\t\t\t\t\t<input type="checkbox" id="freshness-grade-filter-');
+          __out.push(__sanitize(freshness_grade));
+          __out.push('" class="filter-checkbox freshness-grade-filter" data-filter-type="freshness-grade-filter" value="');
+          __out.push(__sanitize(freshness_grade));
+          __out.push('">\n\t\t\t\t\t\t');
+          __out.push(__sanitize(freshness_grade));
+          __out.push('\n\t\t\t\t\t</label>\n\t\t\t\t');
+        }
+      
+        __out.push('\n\t\t\t</div>\n\t\t\t<div class="filter-section cfx">\n\t\t\t\t<h3>Texture</h3>\n\t\t\t\t');
+      
+        _ref3 = this.freshness_grade_choices;
+        for (_k = 0, _len3 = _ref3.length; _k < _len3; _k++) {
+          texture_grade = _ref3[_k];
+          __out.push('\n\t\t\t\t\t<label class="checkbox grade-filter-checkbox">\n\t\t\t\t\t\t<input type="checkbox" id="texture-grade-filter-');
+          __out.push(__sanitize(texture_grade));
+          __out.push('" class="filter-checkbox texture-grade-filter" data-filter-type="texture-grade-filter" value="');
+          __out.push(__sanitize(texture_grade));
+          __out.push('">\n\t\t\t\t\t\t');
+          __out.push(__sanitize(texture_grade));
+          __out.push('\n\t\t\t\t\t</label>\n\t\t\t\t');
+        }
+      
+        __out.push('\n\t\t\t</div>\n\t\t\t<div class="filter-section cfx">\n\t\t\t\t<h3>Tail</h3>\n\t\t\t\t');
+      
+        _ref4 = this.core_grade_choices;
+        for (_l = 0, _len4 = _ref4.length; _l < _len4; _l++) {
+          tail_grade = _ref4[_l];
+          __out.push('\n\t\t\t\t\t<label class="checkbox grade-filter-checkbox">\n\t\t\t\t\t\t<input type="checkbox" id="tail-grade-filter-');
+          __out.push(__sanitize(tail_grade));
+          __out.push('" class="filter-checkbox tail-grade-filter" data-filter-type="tail-grade-filter" value="');
+          __out.push(__sanitize(tail_grade));
+          __out.push('">\n\t\t\t\t\t\t');
+          __out.push(__sanitize(tail_grade));
+          __out.push('\n\t\t\t\t\t</label>\n\t\t\t\t');
+        }
+      
+        __out.push('\n\t\t\t</div>\n\t\t</form>\n\t</div>\n\t<div class="span8">\n\t\t<table id="inventory-table" class="table table-striped table-bordered table-condensed">\n\t\t\t<thead>\n\t\t\t\t<tr>\n\t\t\t\t\t<th><i class="icon-check"></i></th>\n\t\t\t\t\t<th>PO #</th>\n\t\t\t\t\t<th>Box</th>\n\t\t\t\t\t<th>Item</th>\n\t\t\t\t\t<th>Weight</th>\n\t\t\t\t\t<th>Species</th>\n\t\t\t\t\t<th>Grade</th>\n\t\t\t\t\t<th>Freshness</th>\n\t\t\t\t\t<th>Texture</th>\n\t\t\t\t\t<th>Tail</th>\n\t\t\t\t\t<th>Actions</th>\n\t\t\t\t</tr>\n\t\t\t</thead>\n\t\t\t<tbody>\n\t\t\t</tbody>\n\t\t</table>\n\t\t<a class="btn batch-edit" href="#"><i class="icon-pencil"></i> Batch Edit (<span>');
       
         __out.push(__sanitize(this.batch_collection.length));
       
@@ -30801,7 +30922,9 @@ $.fn.dataTableExt.afnFiltering.push(
       
         __out.push('</td>\n<td>');
       
-        __out.push(__sanitize(this.purchaseorder.get('shipper').name));
+        if (this.purchaseorder.has('shipper')) {
+          __out.push(__sanitize(this.purchaseorder.get('shipper').name));
+        }
       
         __out.push('</td>\n<td>');
       
@@ -31691,7 +31814,8 @@ $.fn.dataTableExt.afnFiltering.push(
 
     ItemsIndex.prototype.events = {
       'click .batch-edit': 'batchEdit',
-      'click .clear-batch': 'clearBatch'
+      'click .clear-batch': 'clearBatch',
+      'click .filter-checkbox': 'checkboxFilter'
     };
 
     ItemsIndex.prototype.initialize = function() {
@@ -31714,12 +31838,16 @@ $.fn.dataTableExt.afnFiltering.push(
     };
 
     ItemsIndex.prototype.render = function() {
-      var items_table, me, purchaseorder;
+      var core_grade_choices, freshness_grade_choices, items_table, me, purchaseorder;
       me = this;
       purchaseorder = this.options.purchaseorder;
+      core_grade_choices = ["All", "1++", "1+", "1", "1-", "2+", "2H", "2G", "2H", "2G", "2-", "3", "4"];
+      freshness_grade_choices = ["All", "A+", "A", "B+", "B", "B-", "C+", "C", "C-"];
       $(this.el).html(this.template({
         purchaseorder: purchaseorder,
-        batch_collection: batch_collection
+        batch_collection: batch_collection,
+        core_grade_choices: core_grade_choices,
+        freshness_grade_choices: freshness_grade_choices
       }));
       this.collection.each(this.appendItem);
       items_table = this.$('table').dataTable({
@@ -31747,18 +31875,31 @@ $.fn.dataTableExt.afnFiltering.push(
           }
         }
       });
-      this.$('.filter-widget').on('blur', function() {
-        var col_index, filter_value;
-        col_index = $(this).attr('data-column');
-        items_table.fnFilter("^(0{0,2}[0-9]|0?[1-9][0-9]|1[0-7][0-9]|180)$", 4, true);
-        if ($(this).val().length > 0) {
-          filter_value = "^" + $(this).val() + "$";
-          return items_table.fnFilter(filter_value, col_index, true);
-        } else {
-          return items_table.fnFilter('', col_index);
+      this.$("#weight-range").slider({
+        range: true,
+        min: 0,
+        max: 300,
+        values: [75, 225],
+        slide: function(event, ui) {
+          $('#weight-results').html("" + ui.values[0] + " - " + ui.values[1]);
+          items_table.addClass('filter-weight');
+          return items_table.fnDraw();
         }
       });
       return this;
+    };
+
+    ItemsIndex.prototype.checkboxFilter = function(e) {
+      var element, items_table;
+      element = $(e.currentTarget);
+      items_table = this.$('#inventory-table').dataTable();
+      items_table.addClass(element.attr('data-filter-type'));
+      if (element.val() === "All") {
+        $('.' + element.attr('data-filter-type')).prop('checked', element.prop('checked'));
+      } else {
+        $('#' + element.attr('data-filter-type') + '-All').prop('checked', false);
+      }
+      return items_table.fnDraw();
     };
 
     ItemsIndex.prototype.appendItem = function(item) {
@@ -32168,17 +32309,23 @@ $.fn.dataTableExt.afnFiltering.push(
     };
 
     PurchaseorderUploadTable.prototype.uploadInventory = function(event) {
+      var purchase_orders_view;
       $.each(this.collection.models, function(i, model) {
         return model.save();
       });
+      purchaseorders_collection.add(this.model);
       $("#progress-instructions").html("Inventory successfully added to Purchaseorder! You're Done!");
-      console.log(purchaseorders_collection.add(this.model));
       $("#progress-bar").parents('.progress').addClass('progress-success');
       $("#progress-bar").animate({
         width: '100%'
       });
       $("#modal-bottom").find('.save').hide();
-      return $("#modal-bottom").slideDown('slow');
+      $("#modal-bottom").slideDown('slow');
+      purchase_orders_view = new Bluebase.Views.PurchaseordersIndex({
+        collection: purchaseorders_collection
+      });
+      $('#left').html(purchase_orders_view.render().el);
+      return this.model.fetch();
     };
 
     return PurchaseorderUploadTable;

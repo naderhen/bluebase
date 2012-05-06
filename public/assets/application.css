@@ -5542,6 +5542,10 @@ div.wijmo-wijmenu .wijmo-wijmenu-child .wijmo-wijmenu-text
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.cfx:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.cfx{display:inline-table;min-width:1px;}
+*html .cfx{height:1%;}
+.cfx{display:block;}
 
 #container { padding-top: 40px !important; }
 
@@ -5578,6 +5582,17 @@ table tr { cursor: pointer; }
 #left .btn { margin: 15px 0; }
 
 .modal-body .btn { margin: 20px 0; }
+
+#weight-range { margin: 15px 0; }
+
+.filter-section { clear: both; }
+
+.filter-section h3 { margin: 0 0 5px; }
+
+.grade-filter-checkbox { 
+	float: left;
+	width: 80px;
+}
 @charset 'UTF-8';
 /*
  * jQuery File Upload UI Plugin CSS 6.3

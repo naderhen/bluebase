@@ -28,9 +28,17 @@ class Bluebase.Views.PurchaseorderUploadTable extends Backbone.View
 	uploadInventory: (event) ->
 		$.each @collection.models, (i, model) ->
 			model.save()
+			
+		purchaseorders_collection.add(@model)
+		
 		$("#progress-instructions").html("Inventory successfully added to Purchaseorder! You're Done!")
-		console.log purchaseorders_collection.add(@model)
+
 		$("#progress-bar").parents('.progress').addClass('progress-success')
 		$("#progress-bar").animate({width: '100%'})
 		$("#modal-bottom").find('.save').hide()
 		$("#modal-bottom").slideDown('slow')
+
+		purchase_orders_view = new Bluebase.Views.PurchaseordersIndex({collection: purchaseorders_collection})
+		$('#left').html(purchase_orders_view.render().el)
+		
+		@model.fetch()

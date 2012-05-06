@@ -3,19 +3,46 @@
 </div>
 <div class="row">
 	<div class="well span3">
-		<form id="items-filters" class="form-horizontal">
-			<label>PO #</label>
-			<input class="filter-widget span2" type="text" data-column="1">
-			<label>Box #</label>
-			<input class="filter-widget span2" type="text" data-column="2">
-			<label>Item #</label>
-			<input class="filter-widget span2" type="text" data-column="3">
-			<label>Weight</label>
-			<input class="filter-widget span2" type="text" data-column="4">
-			<label>Species</label>
-			<input class="filter-widget span2" type="text" data-column="5">
-			<label>Grade</label>
-			<input class="filter-widget span2" type="text" data-column="6">
+		<form id="items-filters" class="form-horizontal cfx">
+			<h3>Weight: <span id="weight-results">ANY</span> lbs</h3>
+			<div id="weight-range"></div>
+			<div class="filter-section cfx">
+				<h3>Core Grade</h3>
+				<% for core_grade in @core_grade_choices: %>
+					<label class="checkbox grade-filter-checkbox">
+						<input type="checkbox" id="core-grade-filter-<%= core_grade %>" class="filter-checkbox core-grade-filter" data-filter-type="core-grade-filter" value="<%= core_grade %>">
+						<%= core_grade %>
+					</label>
+				<% end %>
+			</div>
+			<br />
+			<div class="filter-section cfx">
+				<h3>Freshness</h3>
+				<% for freshness_grade in @freshness_grade_choices: %>
+					<label class="checkbox grade-filter-checkbox">
+						<input type="checkbox" id="freshness-grade-filter-<%= freshness_grade %>" class="filter-checkbox freshness-grade-filter" data-filter-type="freshness-grade-filter" value="<%= freshness_grade %>">
+						<%= freshness_grade %>
+					</label>
+				<% end %>
+			</div>
+			<div class="filter-section cfx">
+				<h3>Texture</h3>
+				<% for texture_grade in @freshness_grade_choices: %>
+					<label class="checkbox grade-filter-checkbox">
+						<input type="checkbox" id="texture-grade-filter-<%= texture_grade %>" class="filter-checkbox texture-grade-filter" data-filter-type="texture-grade-filter" value="<%= texture_grade %>">
+						<%= texture_grade %>
+					</label>
+				<% end %>
+			</div>
+			<div class="filter-section cfx">
+				<h3>Tail</h3>
+				<% for tail_grade in @core_grade_choices: %>
+					<label class="checkbox grade-filter-checkbox">
+						<input type="checkbox" id="tail-grade-filter-<%= tail_grade %>" class="filter-checkbox tail-grade-filter" data-filter-type="tail-grade-filter" value="<%= tail_grade %>">
+						<%= tail_grade %>
+					</label>
+				<% end %>
+			</div>
 		</form>
 	</div>
 	<div class="span8">
