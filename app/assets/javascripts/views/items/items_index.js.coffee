@@ -6,6 +6,7 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 		'click .batch-edit': 'batchEdit'
 		'click .clear-batch': 'clearBatch'
 		'click .filter-checkbox': 'checkboxFilter'
+		'click .custom-export': 'customExport'
 
 	initialize: ->
 		@collection.on('reset', @render, this)
@@ -25,9 +26,12 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 	render: ->
 		me = @
 		purchaseorder = @.options.purchaseorder
-		core_grade_choices = ["All", "1++", "1+", "1", "1-", "2+", "2H", "2G", "2H", "2G", "2-", "3", "4"]
-		freshness_grade_choices = ["All", "A+", "A", "B+", "B", "B-", "C+", "C", "C-"]
-		$(@el).html(@template(purchaseorder: purchaseorder, batch_collection: batch_collection, core_grade_choices: core_grade_choices, freshness_grade_choices: freshness_grade_choices))
+		core_grade_choices = _.union(["All"], _.uniq(_.without(@collection.pluck('core_grade'), null)))
+		freshness_grade_choices = _.union(["All"], _.uniq(_.without(@collection.pluck('freshness_grade'), null)))
+		texture_grade_choices = _.union(["All"], _.uniq(_.without(@collection.pluck('texture_grade'), null)))
+		tail_grade_choices = _.union(["All"], _.uniq(_.without(@collection.pluck('tail_grade'), null)))
+
+		$(@el).html(@template(purchaseorder: purchaseorder, batch_collection: batch_collection, core_grade_choices: core_grade_choices, freshness_grade_choices: freshness_grade_choices, texture_grade_choices: texture_grade_choices, tail_grade_choices: tail_grade_choices))
 		@collection.each(@appendItem)
 
 		items_table = @$('table').dataTable({
@@ -62,18 +66,19 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 			slide: (event, ui) ->
 				$('#weight-results').html("#{ui.values[0]} - #{ui.values[1]}")
 				items_table.addClass('filter-weight')
+				items_table.fnDraw()
+
+		@$("#age-range").slider
+			range: true
+			min: -14
+			max: 14
+			values: [ -7, 7 ]
+			slide: (event, ui) ->
+				$('#age-results').html("#{ui.values[0]} to #{ui.values[1]} days")
+				items_table.addClass('filter-age')
 				items_table.fnDraw();
 
-		# @$('.filter-widget').on 'blur', ->
-		# 	col_index = $(this).attr('data-column')
-
-		# 	items_table.fnFilter("^(0{0,2}[0-9]|0?[1-9][0-9]|1[0-7][0-9]|180)$", 4, true)
-
-		# 	if	$(this).val().length > 0
-		# 		filter_value = "^" + $(this).val() + "$"
-		# 		items_table.fnFilter(filter_value, col_index, true)
-		# 	else
-		# 		items_table.fnFilter('', col_index)
+		@$(".filter-checkbox").prop('checked', true)
 			
 		this
 
@@ -89,7 +94,7 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 
 	appendItem: (item) =>
 		purchaseorder = @.options.purchaseorder
-		view = new Bluebase.Views.Item({model: item, collection: @collection, purchaseorder: purchaseorder, batch_collection: batch_collection})
+		view = new Bluebase.Views.Item({model: item, collection: @collection, purchaseorder: purchaseorder, batch_collection: batch_collection, id: item.get('id')})
 		@$('table tbody').append(view.render().el)
 
 	updateBatch: (event) ->
@@ -102,5 +107,19 @@ class Bluebase.Views.ItemsIndex extends Backbone.View
 
 	clearBatch: (event) ->
 		batch_collection.reset()
-		@$('.selected').removeClass('icon-darkblue selected').addClass('unselected')
+		@$('.ui-selected').removeClass('ui-selected')
+		@$('.selected').removeClass('icon-darkblue selected ui-selected').addClass('unselected')
 		event.preventDefault()
+
+	customExport: (event) ->
+		items_table = @$('#inventory-table').dataTable()
+		ids = _.map items_table.fnGetFilteredNodes(), (tr) ->
+			tr.id
+
+		$.ajax "api/custom_export/#{ids.join(',')}",
+			success: (data) ->
+				div = $("<div class='modal'><div class='modal-header'><h3>Download CSV</h3></div><div class='modal-body'><a href='#{data.url}' class='btn btn-success'>Download CSV!</a></div></div>")
+				div.modal()
+
+		event.preventDefault()
+

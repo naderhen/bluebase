@@ -52,3 +52,5 @@ table tr { cursor: pointer; }
 	float: left;
 	width: 80px;
 }
+
+#po_length_select { padding: 0 0 0 20px; }

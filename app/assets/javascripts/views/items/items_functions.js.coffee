@@ -53,6 +53,13 @@ class Bluebase.Views.ItemsFunctions extends Backbone.View
 			comments_collection.reset(@model.get('root_comments'))
 		comments_view = new Bluebase.Views.CommentsIndex({collection: comments_collection, parent_model: @model, parent_type: "Item"} )
 		$(me.el).find('#comments-container').html(comments_view.render().el)
+
+		history_collection = new Bluebase.Collections.Histories
+		if $.parseJSON(@model.get('changesets')).length > 0
+			history_collection.reset($.parseJSON(@model.get('changesets')))
+			history_view = new Bluebase.Views.HistoryIndex({collection: history_collection, parent_model: @model, parent_type: "Item"})
+			$(me.el).find('#history-container').html(history_view.render().el)
+
 		Backbone.ModelBinding.bind(this)
 		this
 

@@ -1,3 +1,22 @@
+$.fn.dataTableExt.oApi.fnGetFilteredNodes = function ( oSettings )
+{
+    var anRows = [];
+    for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+    {
+        var nRow = oSettings.aoData[ oSettings.aiDisplay[i] ].nTr;
+        anRows.push( nRow );
+    }
+    return anRows;
+};
+
+$.fn.dataTableExt.oApi.fnGetFilteredData = function ( oSettings ) {
+    var a = [];
+    for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ ) {
+        a.push(oSettings.aoData[ oSettings.aiDisplay[i] ]._aData);
+    }
+    return a;
+}
+
 $.fn.dataTableExt.afnFiltering.push(
 	function( oSettings, aData, iDataIndex ) {
 		var table = $(oSettings.nTable);
@@ -12,14 +31,27 @@ $.fn.dataTableExt.afnFiltering.push(
 				conditions.push(row_weight > min && row_weight < max);
 			}
 
+			if (table.hasClass('filter-age')) {
+				var ageRange = $("#age-range").data('slider'),
+					min = ageRange.options.values[0],
+					max = ageRange.options.values[1],
+					row_age = parseInt(aData[10]);
+
+				conditions.push(row_age > min && row_age < max);
+			}
+
 			if (table.hasClass('core-grade-filter')) {
 				var checkedArray = _.pluck($('.core-grade-filter:checked'), 'value'),
 					row_grade = aData[6];
 
-				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
-					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				if (row_grade == "") {
+					conditions.push(true)
 				} else {
-					conditions.push(true);
+					if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+						conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+					} else {
+						conditions.push(true);
+					}
 				}
 			};
 
@@ -27,10 +59,14 @@ $.fn.dataTableExt.afnFiltering.push(
 				var checkedArray = _.pluck($('.freshness-grade-filter:checked'), 'value'),
 					row_grade = aData[7];
 
-				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
-					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				if (row_grade == "") {
+					conditions.push(true)
 				} else {
-					conditions.push(true);
+					if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+						conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+					} else {
+						conditions.push(true);
+					}
 				}
 			};
 
@@ -38,10 +74,14 @@ $.fn.dataTableExt.afnFiltering.push(
 				var checkedArray = _.pluck($('.texture-grade-filter:checked'), 'value'),
 					row_grade = aData[8];
 
-				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
-					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				if (row_grade == "") {
+					conditions.push(true)
 				} else {
-					conditions.push(true);
+					if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+						conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+					} else {
+						conditions.push(true);
+					}
 				}
 			};
 
@@ -49,10 +89,14 @@ $.fn.dataTableExt.afnFiltering.push(
 				var checkedArray = _.pluck($('.tail-grade-filter:checked'), 'value'),
 					row_grade = aData[9];
 
-				if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
-					conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+				if (row_grade == "") {
+					conditions.push(true)
 				} else {
-					conditions.push(true);
+					if (checkedArray.length > 0 && _.indexOf(checkedArray, "All") == -1) {
+						conditions.push(_.indexOf(checkedArray, row_grade) > -1);
+					} else {
+						conditions.push(true);
+					}
 				}
 			};
 

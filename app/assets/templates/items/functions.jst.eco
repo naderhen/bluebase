@@ -2,125 +2,151 @@
 	<h4>Functions: <%= @item.get('po_number') %>-<%= @item.get('box_number') %>-<%= @item.get('item_number') %></h4>
 </div>
 
-<div class="well">
-	<h3>Regrading</h3>
+<div class="accordion" id="functions-accordian">
 
-	<form id="regrading-form" class="form-vertical">
-		<div class="row">
-			<div class="span2">
-				<% if(@grade_options.length): %>
-					<label for="core_grade">Core</label>
-					<select id="core_grade" class="span2">
-						<% for grade in @grade_options: %>
-							<option><%= grade %></option>
+	<div class="accordion-group">
+	  <div class="accordion-heading">
+	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#functions-accordian" href="#regrading-acc">
+	      Regrading
+	    </a>
+	  </div>
+	  <div id="regrading-acc" class="accordion-body collapse" style="height: 0px; ">
+	    <div class="accordion-inner">
+	      	<form id="regrading-form" class="form-vertical">
+				<div class="row">
+					<div class="span2">
+						<% if(@grade_options.length): %>
+							<label for="core_grade">Core</label>
+							<select id="core_grade" class="span2">
+								<% for grade in @grade_options: %>
+									<option><%= grade %></option>
+								<% end %>
+							</select>
 						<% end %>
-					</select>
-				<% end %>
-				<% if(@freshness_grade_options.length): %>
-					<label for="freshness_grade">Freshness</label>
-					<select id="freshness_grade" name="freshness_grade" class="span2">
-						<% for grade in @freshness_grade_options: %>
-							<option><%= grade %></option>
+						<% if(@freshness_grade_options.length): %>
+							<label for="freshness_grade">Freshness</label>
+							<select id="freshness_grade" name="freshness_grade" class="span2">
+								<% for grade in @freshness_grade_options: %>
+									<option><%= grade %></option>
+								<% end %>
+							</select>
 						<% end %>
-					</select>
-				<% end %>
-			</div>
-			<div class="span2">
-				<% if(@tail_grade_options.length): %>
-					<label for="tail_grade">Tail</label>
-					<select id="tail_grade" class="span2">
-						<% for grade in @tail_grade_options: %>
-							<option><%= grade %></option>
-						<% end %>
-					</select>
-				<% end %>
-				<% if(@texture_grade_options.length): %>
-					<label for="texture_grade">Texture</label>
-					<select id="texture_grade" class="span2">
-						<% for grade in @texture_grade_options: %>
-							<option><%= grade %></option>
-						<% end %>
-					</select>
-				<% end %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span5">
-				<% for tag_option in @tag_options: %>
-					<div class="tag_check_item">
-						<label class="checkbox">
-	                		<input id="tag_check_<%= tag_option %>" type="checkbox" name="<%= tag_option %>" class="tag_list_check" value="<%= tag_option %>" <% if (@tagged.indexOf(tag_option) > -1): %>checked="checked"<%end%>>
-	                		<%= tag_option %>
-	              		</label>
 					</div>
-				<% end %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span2">
-				<button type="submit" class="btn btn-primary">Save changes</button>
-			</div>
-		</div>
-	</form>
-</div>
-
-<div class="well">
-	<h3>Product Notes</h3>
-	<div id="comments-container"></div>
-</div>
-
-<div class="well">
-	<h3>Product Info</h3>
-
-	<form id="item-form" class="form-horizontal">
-		<div class="row">
-			<div class="span2">
-				<label>PO #</label>
-				<input id="po_number" type="text" class="input-small" placeholder="PO#">
-				<label>Item #</label>
-				<input id="item_number" type="text" class="input-small" placeholder="Item #">
-				<label>Species</label>
-				<input id="species" type="text" class="input-small" placeholder="Species">
-				<label>Subspecies</label>
-				<input id="subspecies" type="text" class="input-small" placeholder="Subspecies">
-				<label>Shipper Grade</label>
-				<input id="shipper_grade" type="text" class="input-small" placeholder="Shipper Grade">
-			</div>
-			<div class="span2">
-				<label>Box #</label>
-				<input id="box_number" type="text" class="input-small" placeholder="Box #">
-				<label>Weight</label>
-				<input id="weight" type="text" class="input-small" placeholder="Weight">
-				<label>Type</label>
-				<input id="type" type="text" class="input-small" placeholder="Type">
-				<label>Cut</label>
-				<input id="cut" type="text" class="input-small" placeholder="Cut">
-				<label>Customer</label>
-				<input id="customer_autocomplete" type="text" class="input-small" placeholder="Customer ID">
-				<input id="customer_id" type="text" class="input-small" style="display: none;">
-			</div>
-		</div>
-		<div class="row">
-			<div class="span2">
-				<button type="submit" class="btn btn-primary">Save changes</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span4">
-				<h2>Purchase Order Info</h2>
-				<div class="span2">
-					<dl class="dl-horizontal">
-				        <dt>DOA:</dt>
-				        <dd>3/22/2012</dd>
-				        <dt>Origin:</dt>
-				        <dd>Brazil</dd>
-				        <dt>Code:</dt>
-				        <dd>MIA-4686-2403</dd>
-				        <dt>Shipper:</dt>
-				        <dd>******* *****</dd>
-			      	</dl>
+					<div class="span2">
+						<% if(@tail_grade_options.length): %>
+							<label for="tail_grade">Tail</label>
+							<select id="tail_grade" class="span2">
+								<% for grade in @tail_grade_options: %>
+									<option><%= grade %></option>
+								<% end %>
+							</select>
+						<% end %>
+						<% if(@texture_grade_options.length): %>
+							<label for="texture_grade">Texture</label>
+							<select id="texture_grade" class="span2">
+								<% for grade in @texture_grade_options: %>
+									<option><%= grade %></option>
+								<% end %>
+							</select>
+						<% end %>
+					</div>
 				</div>
-			</div>
+				<div class="row">
+					<div class="span5">
+						<% for tag_option in @tag_options: %>
+							<div class="tag_check_item">
+								<label class="checkbox">
+			                		<input id="tag_check_<%= tag_option %>" type="checkbox" name="<%= tag_option %>" class="tag_list_check" value="<%= tag_option %>" <% if (@tagged.indexOf(tag_option) > -1): %>checked="checked"<%end%>>
+			                		<%= tag_option %>
+			              		</label>
+							</div>
+						<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span2">
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="accordion-group">
+	  <div class="accordion-heading">
+	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#functions-accordian" href="#comments-wrapper">
+	      Comments/History
+	    </a>
+	  </div>
+	  <div id="comments-wrapper" class="accordion-body collapse" style="height: 0px; ">
+	    <div class="accordion-inner">
+		    <div id="comments-container"></div>
+		    <div id="history-container"></div>
 		</div>
-	</form>
+	  </div>
+	</div>
+
+	<div class="accordion-group">
+	  <div class="accordion-heading">
+	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#functions-accordian" href="#product-info-wrapper">
+	      Product Info
+	    </a>
+	  </div>
+	  <div id="product-info-wrapper" class="accordion-body collapse" style="height: 0px; ">
+	    <div id="product-info-container" class="accordion-inner">
+	    	<form id="item-form" class="form-horizontal">
+				<div class="row">
+					<div class="span2">
+						<label>PO #</label>
+						<input id="po_number" type="text" class="input-small" placeholder="PO#">
+						<label>Item #</label>
+						<input id="item_number" type="text" class="input-small" placeholder="Item #">
+						<label>Species</label>
+						<input id="species" type="text" class="input-small" placeholder="Species">
+						<label>Subspecies</label>
+						<input id="subspecies" type="text" class="input-small" placeholder="Subspecies">
+						<label>Shipper Grade</label>
+						<input id="shipper_grade" type="text" class="input-small" placeholder="Shipper Grade">
+					</div>
+					<div class="span2">
+						<label>Box #</label>
+						<input id="box_number" type="text" class="input-small" placeholder="Box #">
+						<label>Weight</label>
+						<input id="weight" type="text" class="input-small" placeholder="Weight">
+						<label>Type</label>
+						<input id="type" type="text" class="input-small" placeholder="Type">
+						<label>Cut</label>
+						<input id="cut" type="text" class="input-small" placeholder="Cut">
+						<label>Customer</label>
+						<input id="customer_autocomplete" type="text" class="input-small" placeholder="Customer ID">
+						<input id="customer_id" type="text" class="input-small" style="display: none;">
+					</div>
+				</div>
+				<div class="row">
+					<div class="span2">
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span4">
+						<h2>Purchase Order Info</h2>
+						<div class="span2">
+							<dl class="dl-horizontal">
+						        <dt>DOA:</dt>
+						        <dd>3/22/2012</dd>
+						        <dt>Origin:</dt>
+						        <dd>Brazil</dd>
+						        <dt>Code:</dt>
+						        <dd>MIA-4686-2403</dd>
+						        <dt>Shipper:</dt>
+						        <dd>******* *****</dd>
+					      	</dl>
+						</div>
+					</div>
+				</div>
+			</form>
+	    </div>
+	  </div>
+	</div>
 </div>

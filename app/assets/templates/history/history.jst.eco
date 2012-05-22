@@ -1,0 +1,2 @@
+<ul class="change-list"></ul>
+<p class="whodunnit"><%= @history.get('user_name') %></p>

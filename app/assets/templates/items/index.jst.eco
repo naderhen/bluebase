@@ -1,5 +1,5 @@
 <div class="well">
-	<h4>Inventory for <%= @purchaseorder.get('po_number') %></h4>
+	<h4>Inventory for <span id="selected_po_list"><%= @purchaseorder.get('po_number') %></span></h4>
 </div>
 <div class="row">
 	<div class="well span3">
@@ -27,7 +27,7 @@
 			</div>
 			<div class="filter-section cfx">
 				<h3>Texture</h3>
-				<% for texture_grade in @freshness_grade_choices: %>
+				<% for texture_grade in @texture_grade_choices: %>
 					<label class="checkbox grade-filter-checkbox">
 						<input type="checkbox" id="texture-grade-filter-<%= texture_grade %>" class="filter-checkbox texture-grade-filter" data-filter-type="texture-grade-filter" value="<%= texture_grade %>">
 						<%= texture_grade %>
@@ -36,12 +36,16 @@
 			</div>
 			<div class="filter-section cfx">
 				<h3>Tail</h3>
-				<% for tail_grade in @core_grade_choices: %>
+				<% for tail_grade in @tail_grade_choices: %>
 					<label class="checkbox grade-filter-checkbox">
 						<input type="checkbox" id="tail-grade-filter-<%= tail_grade %>" class="filter-checkbox tail-grade-filter" data-filter-type="tail-grade-filter" value="<%= tail_grade %>">
 						<%= tail_grade %>
 					</label>
 				<% end %>
+			</div>
+			<div class="filter-section cfx">
+				<h3>Age: <span id="age-results">ANY</span></h3>
+				<div id="age-range"></div>
 			</div>
 		</form>
 	</div>
@@ -59,6 +63,7 @@
 					<th>Freshness</th>
 					<th>Texture</th>
 					<th>Tail</th>
+					<th>Age</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -67,5 +72,6 @@
 		</table>
 		<a class="btn batch-edit" href="#"><i class="icon-pencil"></i> Batch Edit (<span><%= @batch_collection.length %></span>)</a>
 		<a class="btn btn-danger clear-batch" href="#"><i class="icon-trash icon-white"></i> Clear Selection</a>
+		<a class="btn custom-export" href="#"><i class="icon-download"></i>Export</a>
 	</div>
 </div>

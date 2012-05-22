@@ -3,11 +3,16 @@
 <td data-bind="text box_number"><%= @item.get('box_number') %></td>
 <td><%= @item.get('item_number') %></td>
 <td data-bind="text weight"><%= @item.get('weight') %></td>
-<td><%= @item.get('species') %></td>
+<% if @item.get('species') == "Tuna": %>
+	<td><%= @item.get('subspecies') %></td>
+<% else: %>
+	<td><%= @item.get('species') %></td>
+<% end %>
 <td><%= @item.get('core_grade') %></td>
 <td><%= @item.get('freshness_grade') %></td>
 <td><%= @item.get('texture_grade') %></td>
 <td><%= @item.get('tail_grade') %></td>
+<td><%= @item.get('age') %></td>
 <td>
 	<i class="icon-search"></i>
 	<i class="icon-ok icon-darkblue" style="display: none;"></i>

@@ -46,4 +46,18 @@ class AttachmentsController < ApplicationController
 		@attachment.destroy
 		render :json => true
 	end
+
+	def custom_export
+		ids = params[:ids]
+		ids_array = ids.split(",")
+		items = Item.find(ids_array)
+		file_name = Time.now.strftime("%Y%m%d%H%M%S")
+		csv_file = CSV.open("public/system/custom_exports/#{file_name}.csv", "wb") do |csv|
+			csv << ["PO #", "Box", "Item", "Code", "Weight", "Species", "Grade", "Shipper Grade", "Freshness", "Texture", "Tail"]
+			items.each do |item|
+				csv << [item.po_number, item.box_number, item.item_number, item.code, item.weight, item.species, item.core_grade, item.shipper_grade, item.freshness_grade, item.texture_grade, item.tail_grade]
+			end
+		end
+		render :json => { :url => "system/custom_exports/#{file_name}.csv"}
+	end
 end

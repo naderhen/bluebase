@@ -1,6 +1,7 @@
 Bluebase::Application.routes.draw do
   scope "api" do
     resources :items, :shippers, :notes, :attachments, :customers, :comments
+    match "custom_export/:ids" => "attachments#custom_export"
     resources :purchaseorders do
       member do
         get 'export'

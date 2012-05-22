@@ -12,6 +12,7 @@
 				<th>Locale</th>
 				<th>Origin</th>
 				<th>Graded</th>
+				<th>Add To List</th>
 			</tr>
 		</thead>
 		<tbody>

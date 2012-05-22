@@ -1,5 +1,4 @@
 <td>
-	<i class="icon-list"></i>
 	<i class="icon-edit edit-purchaseorder"></i>
 	<i class="icon-download download-csv"></i>
 </td>
@@ -13,3 +12,4 @@
 <% else: %>
 	<td style="text-align: center;"><span class="edit-purchaseorder badge badge-warning"></span></td>
 <% end %>
+<td><i class="icon-list"></i></td>

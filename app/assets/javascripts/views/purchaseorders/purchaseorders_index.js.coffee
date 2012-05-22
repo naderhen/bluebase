@@ -19,10 +19,10 @@ class Bluebase.Views.PurchaseordersIndex extends Backbone.View
 		$(@el).html(@template())
 		@collection.each(@appendPurchaseorder)
 		purchaseorders_table = @$('table').dataTable( {
-			"sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
+			"sDom": "<'row'<'#po_length_select'l><'#po_search'f>r>t<'row'<'span5'i><'span5'p>>",
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
-				"sLengthMenu": "_MENU_ records per page"
+				"sLengthMenu": "_MENU_"
 			},
 			"aaSorting": [[1, "desc"]]
 		});
