@@ -8,7 +8,7 @@
 require 'csv'
 User.delete_all
 puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'Nader Hendawi', :email => 'naderhen@gmail.com', :password => 'krock923', :password_confirmation => 'krock923', :role => "Admin"
+user = User.create! :name => 'Nader Hendawi', :email => 'naderhen@gmail.com', :password => 'bigblue22', :password_confirmation => 'bigblue22', :role => "Admin"
 puts 'New user created: ' << user.name
 
 user = User.create! :name => 'Warehouse Grader', :email => 'warehouse@bigblue.com', :password => 'bigblue', :password_confirmation => 'bigblue', :role => "Warehouse Grader"
